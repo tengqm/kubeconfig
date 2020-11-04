@@ -42,28 +42,32 @@ limitations under the License.
 // configuration options defined in the kubeadm config file are also available as command line flags, but only
 // the most common/simple use case are supported with this approach.
 //
-// A kubeadm config file could contain multiple configuration types separated using three dashes (“---”).
+// A kubeadm config file could contain multiple configuration types separated using three dashes (`---`).
 //
 // kubeadm supports the following configuration types:
 //
 // ```yaml
 // apiVersion: kubeadm.k8s.io/v1beta2
 // kind: InitConfiguration
-//
+// ```
+// ```yaml
 // apiVersion: kubeadm.k8s.io/v1beta2
 // kind: ClusterConfiguration
-//
+// ```
+// ```yaml
 // apiVersion: kubelet.config.k8s.io/v1beta1
 // kind: KubeletConfiguration
-//
+// ```
+// ```yaml
 // apiVersion: kubeproxy.config.k8s.io/v1alpha1
 // kind: KubeProxyConfiguration
-//
+// ```
+// ```yaml
 // apiVersion: kubeadm.k8s.io/v1beta2
 // kind: JoinConfiguration
 // ```
 //
-// To print the defaults for "init" and "join" actions use the following commands:
+// To print the defaults for `init` and `join` actions use the following commands:
 //
 // ```shell
 // kubeadm config print init-defaults
@@ -73,8 +77,8 @@ limitations under the License.
 // The list of configuration types that must be included in a configuration file depends by the action you are
 // performing (`init` or `join`) and by the configuration options you are going to use (defaults or advanced customization).
 //
-// If some configuration types are not provided, or provided only partially, kubeadm will use default values; defaults
-// provided by kubeadm also enforce consistency of values across components when required (e.g.
+// If some configuration types are not provided, or provided only partially, kubeadm will use default values.
+// Defaults provided by kubeadm help enforce consistency of values across components when required (e.g.
 // `--cluster-cidr` flag on controller manager and `clusterCIDR` on kube-proxy).
 //
 // Users are always allowed to override default values, with the only exception of a small subset of setting
@@ -96,16 +100,17 @@ limitations under the License.
 // nodeRegistration:
 //   # ...
 // ```
-// The `InitConfiguration` type should be used to configure runtime settings. In the case of kubeadm init,
-// these settings include the configuration of the bootstrap token and all the setting specific to the node
+//
+// The `InitConfiguration` type is used to configure runtime settings. In the case of `kubeadm init`,
+// it includes the configuration of the bootstrap token and all the setting specific to the node
 // where kubeadm is executed, including:
 //
-// - `nodeRegistration`, that holds fields that relate to registering the new node to the cluster;
-//   use it to customize the node name, the CRI socket to use or any other settings that should apply to this
-//   node only (e.g. the node IP).
+// - `nodeRegistration`: fields that relate to registering the new node to the cluster.
+//   You can use it to customize the node name, the CRI socket to use or any other
+//   settings that should apply to this node only (for example. the node IP).
 //
-// - `localAPIEndpoint`, that represents the endpoint of the instance of the API server to be deployed on
-//   this node. For example, uou can use it to customize the API server advertise address.
+// - `localAPIEndpoint`: the endpoint of the API server instance to be deployed on this node.
+//   For example, you can use it to customize the API server advertise address.
 //
 //   ```yaml
 //   apiVersion: kubeadm.k8s.io/v1beta2
@@ -127,17 +132,18 @@ limitations under the License.
 // - Networking, that holds configuration for the networking topology of the cluster;
 //   For example, uou can use it to customize node subnet or services subnet.
 //
-// - Etcd configurations; used for customizing the local etcd or to configure the API server
-//   for using an external etcd cluster.
+// - Etcd configurations that can be used for customizing the local etcd or to configure
+//   the API server for using an external etcd cluster.
 //
-// - kube-apiserver, kube-scheduler, kube-controller-manager configurations: used for customizing
-//   the control-plane components by adding customized setting or overriding kubeadm default settings.
+// - kube-apiserver, kube-scheduler, kube-controller-manager configurations.
+//   You can use it to customize control-plane components by adding customized setting
+//   or overriding kubeadm default settings.
 //
-//   ```yaml
-//   apiVersion: kubeproxy.config.k8s.io/v1alpha1
-//   kind: KubeProxyConfiguration
-//   # ...
-//   ```
+// ```yaml
+// apiVersion: kubeproxy.config.k8s.io/v1alpha1
+// kind: KubeProxyConfiguration
+// # ...
+// ```
 //
 // The `KubeProxyConfiguration` type is used to change the configurations passed to the kube-proxy
 // instances deployed in the cluster. If this object is not provided or provided only partially,
@@ -265,7 +271,7 @@ limitations under the License.
 //
 // *Kubeadm join configuration types*
 //
-// When executing kubeadm join with the `--config` option, the `JoinConfiguration` type should be provided.
+// When executing `kubeadm join` with the `--config` option, the `JoinConfiguration` type should be provided.
 //
 // ```yaml
 // apiVersion: kubeadm.k8s.io/v1beta2
@@ -273,8 +279,8 @@ limitations under the License.
 // # ...
 // ```
 //
-// The `JoinConfiguration` type is used to configure runtime settings. In the case of kubeadm join, these
-// include the discovery method used for accessing the cluster info and all the setting which are specific
+// The `JoinConfiguration` type is used to configure runtime settings. In the case of `kubeadm join`,
+// it contains the discovery method used for accessing the cluster info and all the setting which are specific
 // to the node where kubeadm is executed, including:
 //
 // - `NodeRegistration`: fields related to registering the new node to the cluster.
