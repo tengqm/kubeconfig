@@ -24,10 +24,10 @@ limitations under the License.
 //
 // A list of changes since v1beta1:
 //
-//	- `certificateKey` field is added to `InitConfiguration` and `JoinConfiguration`.
-//	- `ignorePreflightErrors` field is added to the `NodeRegistrationOptions`.
-//	- The JSON `omitempty` tag is used in more places where appropriate.
-//	- The JSON `omitempty` tag of the "taints" field (in `NodeRegistrationOptions`) is removed.
+// - `certificateKey` field is added to `InitConfiguration` and `JoinConfiguration`.
+// - `ignorePreflightErrors` field is added to the `NodeRegistrationOptions`.
+// - The JSON `omitempty` tag is used in more places where appropriate.
+// - The JSON `omitempty` tag of the "taints" field (in `NodeRegistrationOptions`) is removed.
 //
 // See the Kubernetes 1.15 changelog for further details.
 //
@@ -46,7 +46,7 @@ limitations under the License.
 //
 // kubeadm supports the following configuration types:
 //
-// ```
+// ```yaml
 // apiVersion: kubeadm.k8s.io/v1beta2
 // kind: InitConfiguration
 //
@@ -65,7 +65,7 @@ limitations under the License.
 //
 // To print the defaults for "init" and "join" actions use the following commands:
 //
-// ```
+// ```shell
 // kubeadm config print init-defaults
 // kubeadm config print join-defaults
 // ```
@@ -92,9 +92,9 @@ limitations under the License.
 // apiVersion: kubeadm.k8s.io/v1beta2
 // kind: InitConfiguration
 // bootstrapTokens:
-//   ...
+//   # ...
 // nodeRegistration:
-//   ...
+//   # ...
 // ```
 // The `InitConfiguration` type should be used to configure runtime settings. In the case of kubeadm init,
 // these settings include the configuration of the bootstrap token and all the setting specific to the node
@@ -107,19 +107,19 @@ limitations under the License.
 // - `localAPIEndpoint`, that represents the endpoint of the instance of the API server to be deployed on
 //   this node. For example, uou can use it to customize the API server advertise address.
 //
-//   ```
+//   ```yaml
 //   apiVersion: kubeadm.k8s.io/v1beta2
 //   kind: ClusterConfiguration
 //   networking:
-//     ...
+//     # ...
 //   etcd:
-//     ...
+//     # ...
 //   apiServer:
 //     extraArgs:
-//       ...
+//       # ...
 //     extraVolumes:
-//       ...
-//   ...
+//       # ...
+//   # ...
 //   ```
 //
 // The `ClusterConfiguration` type can be used to configure cluster-wide settings, including:
@@ -133,10 +133,10 @@ limitations under the License.
 // - kube-apiserver, kube-scheduler, kube-controller-manager configurations: used for customizing
 //   the control-plane components by adding customized setting or overriding kubeadm default settings.
 //
-//   ```
+//   ```yaml
 //   apiVersion: kubeproxy.config.k8s.io/v1alpha1
 //   kind: KubeProxyConfiguration
-//     ...
+//   # ...
 //   ```
 //
 // The `KubeProxyConfiguration` type is used to change the configurations passed to the kube-proxy
@@ -146,10 +146,10 @@ limitations under the License.
 // or [kube-proxy source code](https://godoc.org/k8s.io/kube-proxy/config/v1alpha1#KubeProxyConfiguration)
 // for the official documentation.
 //
-// ```
+// ```yaml
 // apiVersion: kubelet.config.k8s.io/v1beta1
 // kind: KubeletConfiguration
-// ...
+// # ...
 // ```
 //
 // The `KubeletConfiguration` type is used to change the configurations passed to all kubelet instances
@@ -267,10 +267,10 @@ limitations under the License.
 //
 // When executing kubeadm join with the `--config` option, the `JoinConfiguration` type should be provided.
 //
-// ```
+// ```yaml
 // apiVersion: kubeadm.k8s.io/v1beta2
 // kind: JoinConfiguration
-//   ...
+// # ...
 // ```
 //
 // The `JoinConfiguration` type is used to configure runtime settings. In the case of kubeadm join, these
