@@ -20,9 +20,10 @@ import (
 	fuzz "github.com/google/gofuzz"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtimeserializer "k8s.io/apimachinery/pkg/runtime/serializer"
-	"k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm"
-	"k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2"
-	"k8s.io/kubernetes/cmd/kubeadm/app/constants"
+
+	"github.com/tengqm/kubeconfig/config/kubeadm"
+	"github.com/tengqm/kubeconfig/config/kubeadm/constants"
+	"github.com/tengqm/kubeconfig/config/kubeadm/v1beta2"
 )
 
 // Funcs returns the fuzzer functions for the kubeadm apis.

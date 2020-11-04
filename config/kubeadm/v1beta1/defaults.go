@@ -20,9 +20,9 @@ import (
 	"net/url"
 	"time"
 
+	"github.com/tengqm/kubeconfig/config/kubeadm/constants"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
-	"k8s.io/kubernetes/cmd/kubeadm/app/constants"
 )
 
 const (

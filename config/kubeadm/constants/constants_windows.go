@@ -1,5 +1,7 @@
+// +build windows
+
 /*
-Copyright 2018 The Kubernetes Authors.
+Copyright 2019 The Kubernetes Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,15 +16,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package fuzzer
+package constants
 
-import (
-	"testing"
+const (
+	// DefaultDockerCRISocket defines the default Docker CRI socket
+	DefaultDockerCRISocket = "npipe:////./pipe/docker_engine"
 
-	"github.com/tengqm/kubeconfig/config/kubeadm/scheme"
-	"k8s.io/apimachinery/pkg/api/apitesting/roundtrip"
+	// PauseVersion indicates the default pause image version for kubeadm
+	PauseVersion = "1.4.0"
 )
-
-func TestRoundTripTypes(t *testing.T) {
-	roundtrip.RoundTripTestForAPIGroup(t, scheme.AddToScheme, Funcs)
-}

@@ -20,29 +20,13 @@ import (
 	"net/url"
 	"time"
 
+	"github.com/tengqm/kubeconfig/config/kubeadm/constants"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	bootstrapapi "k8s.io/cluster-bootstrap/token/api"
 )
 
 const (
-	// FIXME: The following are copied from `k8s.io/kubernetes/cmd/kubeadm/app/constants`
-	// DefaultControlPlaneTimeout specifies the default control plane (actually API Server) timeout for use by kubeadm
-	DefaultControlPlaneTimeout = 4 * time.Minute
-
-	// DefaultTokenDuration specifies the default amount of time that a bootstrap token will be valid
-	// Default behaviour is 24 hours
-	DefaultTokenDuration = 24 * time.Hour
-
-	// DefaultTokenUsages specifies the default functions a token will get
-	DefaultTokenUsages = bootstrapapi.KnownTokenUsages
-
-	// NodeBootstrapTokenAuthGroup specifies which group a Node Bootstrap Token should be authenticated in
-	NodeBootstrapTokenAuthGroup = "system:bootstrappers:kubeadm:default-node-token"
-
-	// DefaultTokenGroups specifies the default groups that this token will authenticate as when used for authentication
-	DefaultTokenGroups = []string{NodeBootstrapTokenAuthGroup}
-
 	// DefaultServiceDNSDomain defines default cluster-internal domain name for Services and Pods
 	DefaultServiceDNSDomain = "cluster.local"
 	// DefaultServicesSubnet defines default service subnet range
@@ -123,7 +107,7 @@ func SetDefaults_ClusterConfiguration(obj *ClusterConfiguration) {
 func SetDefaults_APIServer(obj *APIServer) {
 	if obj.TimeoutForControlPlane == nil {
 		obj.TimeoutForControlPlane = &metav1.Duration{
-			Duration: DefaultControlPlaneTimeout,
+			Duration: constants.DefaultControlPlaneTimeout,
 		}
 	}
 }
@@ -211,15 +195,15 @@ func SetDefaults_BootstrapTokens(obj *InitConfiguration) {
 func SetDefaults_BootstrapToken(bt *BootstrapToken) {
 	if bt.TTL == nil {
 		bt.TTL = &metav1.Duration{
-			Duration: DefaultTokenDuration,
+			Duration: constants.DefaultTokenDuration,
 		}
 	}
 	if len(bt.Usages) == 0 {
-		bt.Usages = DefaultTokenUsages
+		bt.Usages = constants.DefaultTokenUsages
 	}
 
 	if len(bt.Groups) == 0 {
-		bt.Groups = DefaultTokenGroups
+		bt.Groups = constants.DefaultTokenGroups
 	}
 }
 
