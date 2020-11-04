@@ -205,7 +205,7 @@ type NodeRegistrationOptions struct {
 	CRISocket string `json:"criSocket,omitempty"`
 
 	// `taints` specifies the taints the Node API object should be registered with. If this field is not set, i.e. nil,
-	// it will be defaulted to `['node-role.kubernetes.io/master=""]` during `kubeadm init`.
+	// it will be defaulted to `['node-role.kubernetes.io/master=""']` during `kubeadm init`.
 	// If you don't want to taint your control-plane node, set this field to an empty list (`[]`).
 	// This field is only used for node registration.
 	Taints []v1.Taint `json:"taints,omitempty"`
