@@ -230,7 +230,7 @@ type Networking struct {
 	// When DualStack is enabled, you can specify two CIDRs separated by a comma,
 	// one CIDR for IPv4 and the other for IPv6.
 	// If DualStack is not enabled, only one CIDR can be specified.
-	// The service subnet can be at most 20 bits, so that largest supported Service subnet is `/12` for IPv4
+	// The service subnet can be at most 20 bits, so the largest supported Service subnet is `/12` for IPv4
 	// and `/108` for IPv6.
 	// Also, the subnet defined must have at least 10 nodes.
 	ServiceSubnet string `json:"serviceSubnet,omitempty"`

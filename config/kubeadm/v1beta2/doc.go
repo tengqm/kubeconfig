@@ -31,12 +31,12 @@ limitations under the License.
 //
 // See the Kubernetes 1.15 changelog for further details.
 //
-// *Migration from old kubeadm config versions*
+// **Migration from old kubeadm config versions**
 //
 // Please convert your v1beta1 configuration files to v1beta2 using the `kubeadm config migrate` command of kubeadm
 // v1.15.x. kubeadm v1.15.x supports reading from v1beta1 version of the kubeadm config file format.
 //
-// *Basics*
+// **Basics**
 //
 // The preferred way to configure kubeadm is to pass an YAML configuration file with the `--config` option. Some of the
 // configuration options defined in the kubeadm config file are also available as command line flags, but only
@@ -86,7 +86,7 @@ limitations under the License.
 // If the user provides a configuration types that is not expected for the action you are performing, kubeadm will
 // ignore those types and print a warning.
 //
-// *Kubeadm init configuration types*
+// **Kubeadm init configuration types**
 //
 // When executing kubeadm init with the `--config` option, the following configuration types could be used:
 // `InitConfiguration`, `ClusterConfiguration`, `KubeProxyConfiguration`, `KubeletConfiguration`, but only one
@@ -269,7 +269,7 @@ limitations under the License.
 // # kube-proxy specific options here
 // ```
 //
-// *Kubeadm join configuration types*
+// **Kubeadm join configuration types**
 //
 // When executing `kubeadm join` with the `--config` option, the `JoinConfiguration` type should be provided.
 //
@@ -283,11 +283,11 @@ limitations under the License.
 // it contains the discovery method used for accessing the cluster info and all the setting which are specific
 // to the node where kubeadm is executed, including:
 //
-// - `NodeRegistration`: fields related to registering the new node to the cluster.
+// - `nodeRegistration`: fields related to registering the new node to the cluster.
 //   You can use it to customize the node name, the CRI socket to use or any other settings that should
 //   apply to this node only (e.g. the node ip).
 //
-// - `APIEndpoint`: the endpoint of the API server instance to be eventually deployed on this node.
+// - `apiEndpoint`: the endpoint of the API server instance to be eventually deployed on this node.
 //
 package v1beta2 // import "k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2"
 

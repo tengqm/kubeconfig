@@ -38,11 +38,11 @@ limitations under the License.
 // - The `controlPlane*`-related fields in JoinConfiguration were refactored into a sub-structure.
 // - `clusterName` was removed from JoinConfiguration and the name is now fetched from the existing cluster.
 //
-// *Migration from old kubeadm config versions*
+// **Migration from old kubeadm config versions**
 //
 // Please convert your v1alpha3 configuration files to v1beta1 using the `kubeadm config migrate` command of kubeadm v1.13.x
 //
-// *Basics*
+// **Basics**
 //
 // The preferred way to configure kubeadm is to pass an YAML configuration file with the `--config` option. Some of the
 // configuration options defined in the kubeadm config file are also available as command line flags, but only
@@ -92,7 +92,7 @@ limitations under the License.
 // If the user provides a configuration types that is not expected for the action you are performing,
 // kubeadm will ignore those types and print a warning.
 //
-// *Kubeadm init configuration types*
+// **Kubeadm init configuration types**
 //
 // When executing `kubeadm init` with the `--config` option, the following configuration types could be used:
 // `InitConfiguration`, `ClusterConfiguration`, `KubeProxyConfiguration`, `KubeletConfiguration`, but only one
@@ -272,7 +272,7 @@ limitations under the License.
 // # kube-proxy specific options here
 // ```
 //
-// *Kubeadm join configuration types*
+// **Kubeadm join configuration types**
 //
 // When executing `kubeadm join` with the `--config` option, the `JoinConfiguration` type should be provided.
 //
