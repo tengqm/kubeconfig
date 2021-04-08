@@ -19,9 +19,9 @@ package kubeadm
 import (
 	"crypto/x509"
 
+	"github.com/tengqm/kubeconfig/config/kubeadm/features"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"tengqm/kubeconfig/config/kubeadm/features"
 
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )
