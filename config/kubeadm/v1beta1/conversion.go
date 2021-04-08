@@ -18,7 +18,7 @@ package v1beta1
 
 import (
 	"github.com/pkg/errors"
-	"github.com/tengqm/kubeconfig/config/kubeadm"
+	"github.com/tengqm/kubeconfig/kubeadm"
 	"k8s.io/apimachinery/pkg/conversion"
 )
 
