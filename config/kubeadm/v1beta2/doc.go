@@ -268,7 +268,7 @@ limitations under the License.
 // 	# kube-proxy specific options here
 // ```
 //
-// **Kubeadm join configuration types
+// **Kubeadm join configuration types**
 //
 // When executing kubeadm join with the `--config` option, the JoinConfiguration type should be provided.
 //
