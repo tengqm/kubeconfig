@@ -130,8 +130,6 @@ type ClusterConfiguration struct {
 // ControlPlaneComponent holds settings common to control plane component of the cluster
 type ControlPlaneComponent struct {
 	// An extra set of flags to pass to the control plane component.
-	// TODO: This is temporary and ideally we would like to switch all components to
-	// use ComponentConfig + ConfigMaps.
 	ExtraArgs map[string]string `json:"extraArgs,omitempty"`
 
 	// An extra set of host volumes, mounted to the control plane component.
@@ -178,8 +176,6 @@ type ImageMeta struct {
 	// In case this value is set, kubeadm does not change automatically the version
 	// of the above components during upgrades.
 	ImageTag string `json:"imageTag,omitempty"`
-
-	//TODO: evaluate if we need also a ImageName based on user feedbacks
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -282,7 +278,7 @@ type Etcd struct {
 
 // LocalEtcd describes that kubeadm should run an etcd cluster locally
 type LocalEtcd struct {
-	// imageMeta allows to customize the container used for etcd.
+	// This allows to customize the container used for etcd.
 	ImageMeta `json:",inline"`
 
 	// The directory etcd will place its data.
@@ -304,15 +300,15 @@ type ExternalEtcd struct {
 	// Endpoints of etcd members. Required for `ExternalEtcd`.
 	Endpoints []string `json:"endpoints"`
 
-	// An SSL Certificate Authority file used to secure etcd communication.
+	// A SSL Certificate Authority file used to secure etcd communication.
 	// Required if using a TLS connection.
 	CAFile string `json:"caFile"`
 
-	// An SSL certification file used to secure etcd communication.
+	// A SSL certification file used to secure etcd communication.
 	// Required if using a TLS connection.
 	CertFile string `json:"certFile"`
 
-	// An SSL key file used to secure etcd communication.
+	// A SSL key file used to secure etcd communication.
 	// Required if using a TLS connection.
 	KeyFile string `json:"keyFile"`
 }

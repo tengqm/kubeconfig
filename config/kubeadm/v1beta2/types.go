@@ -120,8 +120,6 @@ type ClusterConfiguration struct {
 // ControlPlaneComponent holds settings common to control plane component of the cluster
 type ControlPlaneComponent struct {
 	// `extraArgs` is an extra set of flags to pass to the control plane component.
-	// TODO: This is temporary and ideally we would like to switch all components to
-	// use ComponentConfig + ConfigMaps.
 	ExtraArgs map[string]string `json:"extraArgs,omitempty"`
 
 	// `extraVolumes` is an extra set of host volumes, mounted to the control plane component.
@@ -167,8 +165,6 @@ type ImageMeta struct {
 	// In case this value is set, kubeadm does not change automatically the
 	// version of the above components during upgrades.
 	ImageTag string `json:"imageTag,omitempty"`
-
-	//TODO: evaluate if we need also a ImageName based on user feedbacks
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
