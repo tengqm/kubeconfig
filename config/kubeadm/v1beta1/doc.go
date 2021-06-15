@@ -25,7 +25,7 @@ limitations under the License.
 // This version graduates the configuration format to BETA and is a big step towards GA.
 //
 // A list of changes since v1alpha3:
-
+//
 //  - "apiServerEndpoint" in InitConfiguration was renamed to "localAPIEndpoint" for better clarity of what the field
 //    represents.
 //  - Common fields in ClusterConfiguration such as "*extraArgs" and "*extraVolumes" for control plane components are now moved
