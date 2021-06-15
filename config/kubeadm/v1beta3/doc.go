@@ -1,5 +1,5 @@
 /*
-Copyright 2019 The Kubernetes Authors.
+Copyright 2021 The Kubernetes Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,26 +19,20 @@ limitations under the License.
 // +k8s:deepcopy-gen=package
 // +k8s:conversion-gen=k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm
 
-// Package v1beta2 defines the v1beta2 version of the kubeadm configuration file format.
-// This version improves on the v1beta1 format by fixing some minor issues and adding a few new fields.
+// Package v1beta3 defines the v1beta3 version of the kubeadm configuration file format.
+// This version improves on the v1beta2 format by fixing some minor issues and adding a few new fields.
 //
-// A list of changes since v1beta1:
+// A list of changes since v1beta2:
 //
-// - `certificateKey" field is added to InitConfiguration and JoinConfiguration.
-// - "ignorePreflightErrors" field is added to the NodeRegistrationOptions.
-// - The JSON "omitempty" tag is used in a more places where appropriate.
-// - The JSON "omitempty" tag of the "taints" field (inside NodeRegistrationOptions) is removed.
-// See the Kubernetes 1.15 changelog for further details.
+// - The deprecated "ClusterConfiguration.useHyperKubeImage" field has been removed.
+//   Kubeadm no longer supports the hyperkube image.
+// - The "ClusterConfiguration.DNS.Type" field has been removed since CoreDNS is the only supported
+//   DNS server type by kubeadm.
 //
 // ## Migration from old kubeadm config versions
 //
-// Please convert your v1beta1 configuration files to v1beta2 using the "kubeadm config migrate" command of kubeadm v1.15.x
-// (conversion from older releases of kubeadm config files requires older release of kubeadm as well e.g.
-//
-// - kubeadm v1.11 should be used to migrate v1alpha1 to v1alpha2; kubeadm v1.12 should be used to translate v1alpha2 to v1alpha3;
-// - kubeadm v1.13 or v1.14 should be used to translate v1alpha3 to v1beta1)
-//
-// Nevertheless, kubeadm v1.15.x will support reading from v1beta1 version of the kubeadm config file format.
+// - kubeadm v1.15.x and newer can be used to migrate from the v1beta1 to v1beta2.
+// - kubeadm v1.22.x no longer supports v1beta1 and older APIs, but can be used to migrate v1beta2 to v1beta3.
 //
 // ## Basics
 //
@@ -51,10 +45,10 @@ limitations under the License.
 // kubeadm supports the following configuration types:
 //
 // ```yaml
-// apiVersion: kubeadm.k8s.io/v1beta2
+// apiVersion: kubeadm.k8s.io/v1beta3
 // kind: InitConfiguration
 //
-// apiVersion: kubeadm.k8s.io/v1beta2
+// apiVersion: kubeadm.k8s.io/v1beta3
 // kind: ClusterConfiguration
 //
 // apiVersion: kubelet.config.k8s.io/v1beta1
@@ -63,7 +57,7 @@ limitations under the License.
 // apiVersion: kubeproxy.config.k8s.io/v1alpha1
 // kind: KubeProxyConfiguration
 //
-// apiVersion: kubeadm.k8s.io/v1beta2
+// apiVersion: kubeadm.k8s.io/v1beta3
 // kind: JoinConfiguration
 // ```
 //
@@ -94,7 +88,7 @@ limitations under the License.
 // between InitConfiguration and ClusterConfiguration is mandatory.
 //
 // ```yaml
-// apiVersion: kubeadm.k8s.io/v1beta2
+// apiVersion: kubeadm.k8s.io/v1beta3
 // kind: InitConfiguration
 // bootstrapTokens:
 //     ...
@@ -114,7 +108,7 @@ limitations under the License.
 //   use it e.g. to customize the API server advertise address.
 //
 //   ```yaml
-//   apiVersion: kubeadm.k8s.io/v1beta2
+//   apiVersion: kubeadm.k8s.io/v1beta3
 //   kind: ClusterConfiguration
 //   networking:
 //       ...
@@ -125,6 +119,7 @@ limitations under the License.
 //       ...
 //     extraVolumes:
 //       ...
+//   ...
 //   ```
 //
 // The ClusterConfiguration type should be used to configure cluster-wide settings,
@@ -165,7 +160,7 @@ limitations under the License.
 // configuration types to be used during a `kubeadm init` run.
 //
 // ```yaml
-// apiVersion: kubeadm.k8s.io/v1beta2
+// apiVersion: kubeadm.k8s.io/v1beta3
 // kind: InitConfiguration
 // bootstrapTokens:
 //   - token: "9a08jv.c0izixklcxtmnze7"
@@ -186,7 +181,7 @@ limitations under the License.
 // 	     value: "master"
 // 	     effect: "NoSchedule"
 // 	 kubeletExtraArgs:
-// 	   cgroup-driver: "cgroupfs"
+// 	   v: 4
 //	 ignorePreflightErrors:
 //	   - IsPrivilegedUser
 // localAPIEndpoint:
@@ -194,7 +189,7 @@ limitations under the License.
 // 	 bindPort: 6443
 // certificateKey: "e6a2eb8581237ab72a4f494f30285ec12a9694d750b9785706a83bfcbbbd2204"
 // ---
-// apiVersion: kubeadm.k8s.io/v1beta2
+// apiVersion: kubeadm.k8s.io/v1beta3
 // kind: ClusterConfiguration
 // etcd:
 //   # one of local or external
@@ -254,7 +249,6 @@ limitations under the License.
 // 	    pathType: File
 // certificatesDir: "/etc/kubernetes/pki"
 // imageRepository: "k8s.gcr.io"
-// useHyperKubeImage: false
 // clusterName: "example-cluster"
 // ---
 // apiVersion: kubelet.config.k8s.io/v1beta1
@@ -271,7 +265,7 @@ limitations under the License.
 // When executing kubeadm join with the `--config` option, the JoinConfiguration type should be provided.
 //
 // ```yaml
-// apiVersion: kubeadm.k8s.io/v1beta2
+// apiVersion: kubeadm.k8s.io/v1beta3
 // kind: JoinConfiguration
 // ...
 // ```
@@ -286,4 +280,4 @@ limitations under the License.
 //
 // - APIEndpoint, that represents the endpoint of the instance of the API server to be eventually deployed on this node.
 //
-package v1beta2 // import "k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2"
+package v1beta3 // import "k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta3"

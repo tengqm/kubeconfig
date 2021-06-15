@@ -1,5 +1,5 @@
 /*
-Copyright 2019 The Kubernetes Authors.
+Copyright 2021 The Kubernetes Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v1beta2
+package v1beta3
 
 import (
 	v1 "k8s.io/api/core/v1"
@@ -103,13 +103,6 @@ type ClusterConfiguration struct {
 	// components and for kube-proxy, while `k8s.gcr.io` will be used for all the other images.
 	ImageRepository string `json:"imageRepository,omitempty"`
 
-	// `useHyperKubeImage` controls if hyperkube should be used for Kubernetes
-	// components instead of their respective separate images
-	// DEPRECATED: As hyperkube is itself deprecated, this fields is too. It will
-	// be removed in future kubeadm config versions, kubeadm will print multiple
-	// warnings when this is set to true, and at some point it may become ignored.
-	UseHyperKubeImage bool `json:"useHyperKubeImage,omitempty"`
-
 	// Feature gates enabled by the user.
 	FeatureGates map[string]bool `json:"featureGates,omitempty"`
 
@@ -140,16 +133,8 @@ type APIServer struct {
 // DNSAddOnType defines string identifying DNS add-on types
 type DNSAddOnType string
 
-const (
-	// CoreDNS add-on type
-	CoreDNS DNSAddOnType = "CoreDNS"
-)
-
 // DNS defines the DNS addon that should be used in the cluster
 type DNS struct {
-	// `type` defines the DNS add-on to use.
-	Type DNSAddOnType `json:"type"`
-
 	// `imageMeta` allows to customize the image used for the DNS.
 	ImageMeta `json:",inline"`
 }
