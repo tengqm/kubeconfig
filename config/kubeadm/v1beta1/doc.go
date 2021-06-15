@@ -98,7 +98,7 @@ limitations under the License.
 //
 // ## Kubeadm init configuration types
 //
-// When executing kubeadm init with the --config option, the following configuration types could be used:
+// When executing kubeadm init with the `--config` option, the following configuration types could be used:
 // InitConfiguration, ClusterConfiguration, KubeProxyConfiguration, KubeletConfiguration, but only one
 // between InitConfiguration and ClusterConfiguration is mandatory.
 //
@@ -158,9 +158,11 @@ limitations under the License.
 // See https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy/ or https://godoc.org/k8s.io/kube-proxy/config/v1alpha1#KubeProxyConfiguration
 // for kube proxy official documentation.
 //
-//    apiVersion: kubelet.config.k8s.io/v1beta1
-//    kind: KubeletConfiguration
-//       ...
+// ```yaml
+// apiVersion: kubelet.config.k8s.io/v1beta1
+// kind: KubeletConfiguration
+// ...
+// ```
 //
 // The KubeletConfiguration type should be used to change the configurations that will be passed to all kubelet instances
 // deployed in the cluster. If this object is not provided or provided only partially, kubeadm applies defaults.
