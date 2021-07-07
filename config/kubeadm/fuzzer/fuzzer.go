@@ -18,8 +18,8 @@ package fuzzer
 
 import (
 	bootstraptokenv1 "github.com/tengqm/kubeconfig/config/bootstraptoken/v1"
-	"k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm"
-	"k8s.io/kubernetes/cmd/kubeadm/app/constants"
+	"github.com/tengqm/kubeconfig/config/kubeadm"
+	"github.com/tengqm/kubeconfig/config/kubeadm/constants"
 
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
