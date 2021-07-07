@@ -36,7 +36,7 @@ type InitConfiguration struct {
 	// `bootstrapTokens` is respected at `kubeadm init` time and describes a set of Bootstrap Tokens to create.
 	// This information IS NOT uploaded to the kubeadm cluster configmap, partly because of its sensitive nature.
 	// +optional
-	BootstrapTokens []BootstrapToken `json:"bootstrapTokens,omitempty"`
+	BootstrapTokens []bootstraptokenv1.BootstrapToken `json:"bootstrapTokens,omitempty"`
 
 	// `nodeRegistration` holds fields that relate to registering the new control-plane node to the cluster
 	// +optional

@@ -63,16 +63,16 @@ limitations under the License.
 // ```yaml
 // apiVersion: kubeadm.k8s.io/v1beta3
 // kind: InitConfiguration
-//
+// ---
 // apiVersion: kubeadm.k8s.io/v1beta3
 // kind: ClusterConfiguration
-//
+/  ---/
 // apiVersion: kubelet.config.k8s.io/v1beta1
 // kind: KubeletConfiguration
-//
+// ---
 // apiVersion: kubeproxy.config.k8s.io/v1alpha1
 // kind: KubeProxyConfiguration
-//
+// ---
 // apiVersion: kubeadm.k8s.io/v1beta3
 // kind: JoinConfiguration
 // ```
@@ -107,9 +107,9 @@ limitations under the License.
 // apiVersion: kubeadm.k8s.io/v1beta3
 // kind: InitConfiguration
 // bootstrapTokens:
-//     ...
+//   ...
 // nodeRegistration:
-//     ...
+//   ...
 // ```
 //
 // The InitConfiguration type should be used to configure runtime settings, that in case of kubeadm init
@@ -151,7 +151,7 @@ limitations under the License.
 //   ```yaml
 //   apiVersion: kubeproxy.config.k8s.io/v1alpha1
 //   kind: KubeProxyConfiguration
-//      ...
+//     ...
 //   ```
 //
 // The KubeProxyConfiguration type should be used to change the configuration passed to kube-proxy instances deployed
