@@ -66,7 +66,7 @@ limitations under the License.
 // ---
 // apiVersion: kubeadm.k8s.io/v1beta3
 // kind: ClusterConfiguration
-/  ---/
+// ---
 // apiVersion: kubelet.config.k8s.io/v1beta1
 // kind: KubeletConfiguration
 // ---
