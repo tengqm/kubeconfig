@@ -19,7 +19,7 @@ package v1beta3
 import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	bootstraptokenv1 "github.com/tengqm/kubeconfig/kubeadm/bootstraptoken/v1"
+	bootstraptokenv1 "github.com/tengqm/kubeconfig/config/kubeadm/bootstraptoken/v1"
 )
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
