@@ -43,7 +43,7 @@ limitations under the License.
 // - Move the `BootstrapToken*` API and related utilities out of the "kubeadm" API group
 //   to a new group "bootstraptoken". The kubeadm API version v1beta3 no longer contains
 //   the `BootstrapToken*` structures.
-/
+//
 //
 // ## Migration from old kubeadm config versions
 //
