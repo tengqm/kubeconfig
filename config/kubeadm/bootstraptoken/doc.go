@@ -1,7 +1,5 @@
-// +build !windows
-
 /*
-Copyright 2018 The Kubernetes Authors.
+Copyright 2021 The Kubernetes Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,11 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v1beta1
+// +groupName=bootstraptoken.kubeadm.k8s.io
 
-const (
-	// DefaultCACertPath defines default location of CA certificate on Linux
-	DefaultCACertPath = "/etc/kubernetes/pki/ca.crt"
-	// DefaultUrlScheme defines default socket url prefix
-	DefaultUrlScheme = "unix"
-)
+// Package bootstraptoken contains an API and utilities wrapping the
+// "bootstrap.kubernetes.io/token" Secret type to ease its usage in kubeadm.
+package bootstraptoken // import "k8s.io/kubernetes/cmd/kubeadm/app/apis/bootstraptoken"
