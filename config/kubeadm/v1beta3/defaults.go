@@ -20,10 +20,10 @@ import (
 	"net/url"
 	"time"
 
+	bootstraptokenv1 "github.com/tengqm/kubeconfig/config/bootstraptoken/v1"
 	"github.com/tengqm/kubeconfig/config/kubeadm/constants"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
-	bootstraptokenv1 "github.com/tengqm/kubeconfig/config/kubeadm/bootstraptoken/v1"
 )
 
 const (

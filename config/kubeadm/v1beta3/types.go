@@ -17,9 +17,9 @@ limitations under the License.
 package v1beta3
 
 import (
+	bootstraptokenv1 "github.com/tengqm/kubeconfig/config/bootstraptoken/v1"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	bootstraptokenv1 "github.com/tengqm/kubeconfig/config/kubeadm/bootstraptoken/v1"
 )
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
