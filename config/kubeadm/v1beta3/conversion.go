@@ -17,8 +17,9 @@ limitations under the License.
 package v1beta3
 
 import (
-	kubeadm "github.com/tengqm/kubeconfig/config/kubeadm"
 	conversion "k8s.io/apimachinery/pkg/conversion"
+
+	kubeadm "github.com/tengqm/kubeconfig/config/kubeadm"
 )
 
 func Convert_kubeadm_InitConfiguration_To_v1beta3_InitConfiguration(in *kubeadm.InitConfiguration, out *InitConfiguration, s conversion.Scope) error {
