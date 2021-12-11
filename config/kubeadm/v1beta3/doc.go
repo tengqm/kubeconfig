@@ -178,6 +178,7 @@ limitations under the License.
 // Here is a fully populated example of a single YAML file containing multiple
 // configuration types to be used during a `kubeadm init` run.
 //
+// ```yaml
 // apiVersion: kubeadm.k8s.io/v1beta3
 // kind: InitConfiguration
 // bootstrapTokens:
@@ -279,6 +280,7 @@ limitations under the License.
 // apiVersion: kubeproxy.config.k8s.io/v1alpha1
 // kind: KubeProxyConfiguration
 // # kube-proxy specific options here
+// ```
 //
 // ## Kubeadm join configuration types
 //
