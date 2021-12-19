@@ -122,38 +122,38 @@ limitations under the License.
 // - LocalAPIEndpoint, that represents the endpoint of the instance of the API server to be deployed on this node;
 //   use it e.g. to customize the API server advertise address.
 //
-//   ```
-//   apiVersion: kubeadm.k8s.io/v1beta3
-//   kind: ClusterConfiguration
-//   networking:
-//     ...
-//   etcd:
-//     ...
-//   apiServer:
-//     extraArgs:
-//       ...
-//     extraVolumes:
-//       ...
+// ```yaml
+// apiVersion: kubeadm.k8s.io/v1beta3
+// kind: ClusterConfiguration
+// networking:
 //   ...
-//   ```
+// etcd:
+//   ...
+// apiServer:
+//   extraArgs:
+//     ...
+//   extraVolumes:
+//     ...
+// ...
+// ```
 //
 // The ClusterConfiguration type should be used to configure cluster-wide settings,
 // including settings for:
 //
-// - Networking, that holds configuration for the networking topology of the cluster; use it e.g. to customize
+// - `networking` that holds configuration for the networking topology of the cluster; use it e.g. to customize
 //   Pod subnet or services subnet.
 //
-// - Etcd configurations; use it e.g. to customize the local etcd or to configure the API server
+// - `etcd`: use it e.g. to customize the local etcd or to configure the API server
 //   for using an external etcd cluster.
 //
 // - kube-apiserver, kube-scheduler, kube-controller-manager configurations; use it to customize control-plane
 //   components by adding customized setting or overriding kubeadm default settings.
 //
-//   ```yaml
-//   apiVersion: kubeproxy.config.k8s.io/v1alpha1
-//   kind: KubeProxyConfiguration
-//     ...
-//   ```
+// ```yaml
+// apiVersion: kubeproxy.config.k8s.io/v1alpha1
+// kind: KubeProxyConfiguration
+//   ...
+// ```
 //
 // The KubeProxyConfiguration type should be used to change the configuration passed to kube-proxy instances
 // deployed in the cluster. If this object is not provided or provided only partially, kubeadm applies defaults.
@@ -296,11 +296,11 @@ limitations under the License.
 // are the discovery method used for accessing the cluster info and all the setting which are specific
 // to the node where kubeadm is executed, including:
 //
-// - NodeRegistration, that holds fields that relate to registering the new node to the cluster;
+// - `nodeRegistration`, that holds fields that relate to registering the new node to the cluster;
 //   use it to customize the node name, the CRI socket to use or any other settings that should apply to this
 //   node only (e.g. the node ip).
 //
-// - APIEndpoint, that represents the endpoint of the instance of the API server to be eventually deployed on this node.
+// - `apiEndpoint`, that represents the endpoint of the instance of the API server to be eventually deployed on this node.
 //
 package v1beta3
 

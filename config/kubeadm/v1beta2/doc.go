@@ -116,20 +116,20 @@ limitations under the License.
 // - `apiServer`, that represents the endpoint of the instance of the API server to be deployed on this node;
 //   use it e.g. to customize the API server advertise address.
 //
-//   ```yaml
-//   apiVersion: kubeadm.k8s.io/v1beta2
-//   kind: ClusterConfiguration
-//   networking:
-//       ...
-//   etcd:
-//       ...
-//   apiServer:
-//     extraArgs:
-//       ...
-//     extraVolumes:
-//       ...
-//   ...
-//   ```
+// ```yaml
+// apiVersion: kubeadm.k8s.io/v1beta2
+// kind: ClusterConfiguration
+// networking:
+//     ...
+// etcd:
+//     ...
+// apiServer:
+//   extraArgs:
+//     ...
+//   extraVolumes:
+//     ...
+// ...
+// ```
 //
 // The ClusterConfiguration type should be used to configure cluster-wide settings,
 // including settings for:
@@ -143,11 +143,11 @@ limitations under the License.
 // - kube-apiserver, kube-scheduler, kube-controller-manager configurations; use it to customize control-plane
 //   components by adding customized setting or overriding kubeadm default settings.
 //
-//   ```yaml
-//   apiVersion: kubeproxy.config.k8s.io/v1alpha1
-//   kind: KubeProxyConfiguration
-//     ...
-//   ```
+// ```yaml
+// apiVersion: kubeproxy.config.k8s.io/v1alpha1
+// kind: KubeProxyConfiguration
+//   ...
+// ```
 //
 // The KubeProxyConfiguration type should be used to change the configuration passed to kube-proxy instances deployed
 // in the cluster. If this object is not provided or provided only partially, kubeadm applies defaults.
@@ -206,23 +206,23 @@ limitations under the License.
 // kind: ClusterConfiguration
 // etcd:
 //   # one of local or external
-// local:
-//   imageRepository: "k8s.gcr.io"
-//   imageTag: "3.2.24"
-//   dataDir: "/var/lib/etcd"
-//   extraArgs:
-//     listen-client-urls: "http://10.100.0.1:2379"
-//   serverCertSANs:
-//     -  "ec2-10-100-0-1.compute-1.amazonaws.com"
-//   peerCertSANs:
-//     - "10.100.0.1"
-// # external:
-// #   endpoints:
-// #     - "10.100.0.1:2379"
-// #     - "10.100.0.2:2379"
-// #   caFile: "/etcd/kubernetes/pki/etcd/etcd-ca.crt"
-// #   certFile: "/etcd/kubernetes/pki/etcd/etcd.crt"
-// #   keyFile: "/etcd/kubernetes/pki/etcd/etcd.key"
+//   local:
+//     imageRepository: "k8s.gcr.io"
+//     imageTag: "3.2.24"
+//     dataDir: "/var/lib/etcd"
+//     extraArgs:
+//       listen-client-urls: "http://10.100.0.1:2379"
+//     serverCertSANs:
+//       -  "ec2-10-100-0-1.compute-1.amazonaws.com"
+//     peerCertSANs:
+//       - "10.100.0.1"
+//   # external:
+//   #   endpoints:
+//   #     - "10.100.0.1:2379"
+//   #     - "10.100.0.2:2379"
+//   #   caFile: "/etcd/kubernetes/pki/etcd/etcd-ca.crt"
+//   #   certFile: "/etcd/kubernetes/pki/etcd/etcd.crt"
+//   #   keyFile: "/etcd/kubernetes/pki/etcd/etcd.key"
 // networking:
 //   serviceSubnet: "10.96.0.0/16"
 //   podSubnet: "10.244.0.0/24"
