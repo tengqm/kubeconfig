@@ -30,7 +30,6 @@ import (
 // `kubeadm init`-only information. These fields are solely used the first time `kubeadm init` runs.
 // After that, the information in the fields IS NOT uploaded to the `kubeadm-config` ConfigMap
 // that is used by `kubeadm upgrade` for instance. These fields must be omitempty.
-
 type InitConfiguration struct {
 	metav1.TypeMeta `json:",inline"`
 
