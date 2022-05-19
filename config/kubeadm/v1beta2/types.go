@@ -96,7 +96,7 @@ type ClusterConfiguration struct {
 	// `certificatesDir` specifies where to store or look for all required certificates.
 	CertificatesDir string `json:"certificatesDir,omitempty"`
 
-	// `mageRepository` sets the container registry to pull images from.
+	// `imageRepository` sets the container registry to pull images from.
 	// If empty, `k8s.gcr.io` will be used by default; in case of kubernetes version is
 	// a CI build (kubernetes version starts with `ci/`) `gcr.io/k8s-staging-ci-images`
 	// is used as a default for control plane components and for kube-proxy, while
@@ -162,7 +162,7 @@ type DNS struct {
 // ImageMeta allows to customize the image used for components that are not
 // originated from the Kubernetes/Kubernetes release process
 type ImageMeta struct {
-	// `mageRepository` sets the container registry to pull images from.
+	// `imageRepository` sets the container registry to pull images from.
 	// If not set, the `imageRepository` defined in ClusterConfiguration will be used.
 	ImageRepository string `json:"imageRepository,omitempty"`
 
@@ -207,7 +207,7 @@ type NodeRegistrationOptions struct {
 	// Defaults to the hostname of the node if not provided.
 	Name string `json:"name,omitempty"`
 
-	// `criSocket is used to retrieve container runtime information. This information will
+	// `criSocket` is used to retrieve container runtime information. This information will
 	// be annotated to the Node API object, for later re-use.
 	CRISocket string `json:"criSocket,omitempty"`
 
@@ -367,7 +367,7 @@ type Discovery struct {
 	File *FileDiscovery `json:"file,omitempty"`
 
 	// `tlsBootstrapToken` is a token used for TLS bootstrapping.
-	// If `bootstrapToken` is set, this field is defaulted to `.bootstrapToken.token,
+	// If `bootstrapToken` is set, this field is defaulted to `.bootstrapToken.token`,
 	// but can be overridden.
 	// If `file` is set, this field **must be set** in case the KubeConfigFile does not
 	// contain any other authentication information.
