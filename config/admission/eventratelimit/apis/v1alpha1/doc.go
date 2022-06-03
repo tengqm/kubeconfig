@@ -15,8 +15,8 @@ limitations under the License.
 */
 
 // +k8s:defaulter-gen=TypeMeta
-// +groupName=evenratelimit.admission.k8s.io
+// +groupName=eventratelimit.admission.k8s.io
 // +k8s:deepcopy-gen=package
-// +k8s:conversion-gen=github.com/tengqm/kubeconfig/config/admission/evenratelimit
+// +k8s:conversion-gen=github.com/tengqm/kubeconfig/config/admission/eventratelimit
 
 package v1alpha1
