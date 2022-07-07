@@ -197,7 +197,7 @@ type APIEndpoint struct {
 	// +optional
 	AdvertiseAddress string `json:"advertiseAddress,omitempty"`
 
-	// `bindPorti` sets the secure port for the API Server to bind to.
+	// `bindPort` sets the secure port for the API Server to bind to.
 	// Defaults to 6443.
 	// +optional
 	BindPort int32 `json:"bindPort,omitempty"`
