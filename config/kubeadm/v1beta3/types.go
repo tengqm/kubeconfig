@@ -220,7 +220,7 @@ type NodeRegistrationOptions struct {
 	// +optional
 	CRISocket string `json:"criSocket,omitempty"`
 
-	// `tains` specifies the taints the Node API object should be registered with.
+	// `taints` specifies the taints the Node API object should be registered with.
 	// If this field is unset, i.e. nil, in the `kubeadm init` process it will be defaulted
 	// with a control-plane taint for control-plane nodes.
 	// If you don't want to taint your control-plane node, set this field to an empty list,
