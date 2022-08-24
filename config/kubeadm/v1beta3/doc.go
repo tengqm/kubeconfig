@@ -270,7 +270,7 @@ limitations under the License.
 //     readOnly: false
 //     pathType: File
 // certificatesDir: "/etc/kubernetes/pki"
-// imageRepository: "k8s.gcr.io"
+// imageRepository: "registry.k8s.io"
 // clusterName: "example-cluster"
 // ---
 // apiVersion: kubelet.config.k8s.io/v1beta1
