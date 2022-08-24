@@ -207,7 +207,7 @@ limitations under the License.
 // etcd:
 //   # one of local or external
 //   local:
-//     imageRepository: "k8s.gcr.io"
+//     imageRepository: "registry.k8s.io"
 //     imageTag: "3.2.24"
 //     dataDir: "/var/lib/etcd"
 //     extraArgs:
