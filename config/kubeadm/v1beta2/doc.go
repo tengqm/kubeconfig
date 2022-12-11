@@ -18,8 +18,10 @@ limitations under the License.
 // +groupName=kubeadm.k8s.io
 // +k8s:deepcopy-gen=package
 // +k8s:conversion-gen=github.com/tengqm/kubeconfig/config/kubeadm
-
+//
 // ## Overview
+//
+// Package v1beta2 has been DEPRECATED by v1beta3.
 //
 // Package v1beta2 defines the v1beta2 version of the kubeadm configuration file format.
 // This version improves on the v1beta1 format by fixing some minor issues and adding a few new fields.
@@ -33,7 +35,7 @@ limitations under the License.
 //
 // See the Kubernetes 1.15 changelog for further details.
 //
-// Migration from old kubeadm config versions
+// # Migration from old kubeadm config versions
 //
 // Please convert your v1beta1 configuration files to v1beta2 using the "kubeadm config migrate" command of kubeadm v1.15.x
 // (conversion from older releases of kubeadm config files requires older release of kubeadm as well e.g.
@@ -113,16 +115,16 @@ limitations under the License.
 //   use it to customize the node name, the CRI socket to use or any other settings that should apply to this
 //   node only (e.g. the node ip).
 //
-// - `apiServer`, that represents the endpoint of the instance of the API server to be deployed on this node;
+// - `localAPIEndpoint`, that represents the endpoint of the instance of the API server to be deployed on this node;
 //   use it e.g. to customize the API server advertise address.
 //
 // ```yaml
 // apiVersion: kubeadm.k8s.io/v1beta2
 // kind: ClusterConfiguration
 // networking:
-//     ...
+//   ...
 // etcd:
-//     ...
+//   ...
 // apiServer:
 //   extraArgs:
 //     ...
@@ -146,7 +148,7 @@ limitations under the License.
 // ```yaml
 // apiVersion: kubeproxy.config.k8s.io/v1alpha1
 // kind: KubeProxyConfiguration
-//   ...
+//  ...
 // ```
 //
 // The KubeProxyConfiguration type should be used to change the configuration passed to kube-proxy instances deployed
@@ -159,7 +161,7 @@ limitations under the License.
 // ```yaml
 // apiVersion: kubelet.config.k8s.io/v1beta1
 // kind: KubeletConfiguration
-//   ...
+//  ...
 // ```
 //
 // The KubeletConfiguration type should be used to change the configurations that will be passed to all kubelet instances
@@ -281,19 +283,18 @@ limitations under the License.
 // ```yaml
 // apiVersion: kubeadm.k8s.io/v1beta2
 // kind: JoinConfiguration
-//   ...
+//  ...
 // ```
 //
 // The JoinConfiguration type should be used to configure runtime settings, that in case of `kubeadm join`
 // are the discovery method used for accessing the cluster info and all the setting which are specific
 // to the node where kubeadm is executed, including:
 //
-// - `NodeRegistration`, that holds fields that relate to registering the new node to the cluster;
+// - `nodeRegistration`, that holds fields that relate to registering the new node to the cluster;
 //   use it to customize the node name, the CRI socket to use or any other settings that should apply to this
 //   node only (e.g. the node IP).
 //
-// - `APIEndpoint`, that represents the endpoint of the instance of the API server to be eventually deployed on this node.
-//
+// - `apiEndpoint`, that represents the endpoint of the instance of the API server to be eventually deployed on this node.
 package v1beta2
 
 //TODO: The BootstrapTokenString object should move out to either k8s.io/client-go or k8s.io/api in the future

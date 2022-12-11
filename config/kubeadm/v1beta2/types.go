@@ -302,7 +302,7 @@ type LocalEtcd struct {
 // ExternalEtcd describes an external etcd cluster.
 // Kubeadm has no knowledge of where certificate files live and they must be supplied.
 type ExternalEtcd struct {
-	// `endpoints` of etcd members.
+	// `endpoints` of etcd members. Required for external etcd.
 	Endpoints []string `json:"endpoints"`
 
 	// `caFile` is an SSL Certificate Authority (CA) file used to secure etcd communication.
