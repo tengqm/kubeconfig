@@ -47,6 +47,7 @@ limitations under the License.
 //
 // - kubeadm v1.15.x and newer can be used to migrate from v1beta1 to v1beta2.
 // - kubeadm v1.22.x and newer no longer support v1beta1 and older APIs, but can be used to migrate v1beta2 to v1beta3.
+// - kubeadm v1.27.x and newer no longer support v1beta2 and older APIs,
 //
 // ## Basics
 //
@@ -182,23 +183,23 @@ limitations under the License.
 // apiVersion: kubeadm.k8s.io/v1beta3
 // kind: InitConfiguration
 // bootstrapTokens:
-// - token: "9a08jv.c0izixklcxtmnze7"
-//   description: "kubeadm bootstrap token"
-//   ttl: "24h"
-// - token: "783bde.3f89s0fje9f38fhf"
-//   description: "another bootstrap token"
-//   usages:
-//   - authentication
-//   - signing
-//   groups:
-//   - system:bootstrappers:kubeadm:default-node-token
+//   - token: "9a08jv.c0izixklcxtmnze7"
+//     description: "kubeadm bootstrap token"
+//     ttl: "24h"
+//   - token: "783bde.3f89s0fje9f38fhf"
+//     description: "another bootstrap token"
+//     usages:
+//       - authentication
+//       - signing
+//     groups:
+//       - system:bootstrappers:kubeadm:default-node-token
 // nodeRegistration:
 //   name: "ec2-10-100-0-1"
 //   criSocket: "/var/run/dockershim.sock"
 //   taints:
-//   - key: "kubeadmNode"
-//     value: "someValue"
-//     effect: "NoSchedule"
+//     - key: "kubeadmNode"
+//       value: "someValue"
+//       effect: "NoSchedule"
 //   kubeletExtraArgs:
 //     v: 4
 //   ignorePreflightErrors:
@@ -222,9 +223,9 @@ limitations under the License.
 //     extraArgs:
 //       listen-client-urls: "http://10.100.0.1:2379"
 //     serverCertSANs:
-//     -  "ec2-10-100-0-1.compute-1.amazonaws.com"
+//       -  "ec2-10-100-0-1.compute-1.amazonaws.com"
 //     peerCertSANs:
-//     - "10.100.0.1"
+//       - "10.100.0.1"
 //   # external:
 //     # endpoints:
 //     # - "10.100.0.1:2379"
@@ -242,33 +243,33 @@ limitations under the License.
 //   extraArgs:
 //     authorization-mode: "Node,RBAC"
 //   extraVolumes:
-//   - name: "some-volume"
-//     hostPath: "/etc/some-path"
-//     mountPath: "/etc/some-pod-path"
-//     readOnly: false
-//     pathType: File
+//     - name: "some-volume"
+//       hostPath: "/etc/some-path"
+//       mountPath: "/etc/some-pod-path"
+//       readOnly: false
+//       pathType: File
 //   certSANs:
-//   - "10.100.1.1"
-//   - "ec2-10-100-0-1.compute-1.amazonaws.com"
+//     - "10.100.1.1"
+//     - "ec2-10-100-0-1.compute-1.amazonaws.com"
 //   timeoutForControlPlane: 4m0s
 // controllerManager:
 //   extraArgs:
 //     "node-cidr-mask-size": "20"
 //   extraVolumes:
-//   - name: "some-volume"
-//     hostPath: "/etc/some-path"
-//     mountPath: "/etc/some-pod-path"
-//     readOnly: false
-//     pathType: File
+//     - name: "some-volume"
+//       hostPath: "/etc/some-path"
+//       mountPath: "/etc/some-pod-path"
+//       readOnly: false
+//       pathType: File
 // scheduler:
 //   extraArgs:
 //     address: "10.100.0.1"
 //   extraVolumes:
-//   - name: "some-volume"
-//     hostPath: "/etc/some-path"
-//     mountPath: "/etc/some-pod-path"
-//     readOnly: false
-//     pathType: File
+//     - name: "some-volume"
+//       hostPath: "/etc/some-path"
+//       mountPath: "/etc/some-pod-path"
+//       readOnly: false
+//       pathType: File
 // certificatesDir: "/etc/kubernetes/pki"
 // imageRepository: "registry.k8s.io"
 // clusterName: "example-cluster"

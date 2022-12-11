@@ -18,7 +18,6 @@ package scheme
 
 import (
 	"github.com/tengqm/kubeconfig/config/kubeadm"
-	"github.com/tengqm/kubeconfig/config/kubeadm/v1beta2"
 	"github.com/tengqm/kubeconfig/config/kubeadm/v1beta3"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -41,7 +40,6 @@ func init() {
 // AddToScheme builds the kubeadm scheme using all known versions of the kubeadm api.
 func AddToScheme(scheme *runtime.Scheme) {
 	utilruntime.Must(kubeadm.AddToScheme(scheme))
-	utilruntime.Must(v1beta2.AddToScheme(scheme))
 	utilruntime.Must(v1beta3.AddToScheme(scheme))
 	utilruntime.Must(scheme.SetVersionPriority(v1beta3.SchemeGroupVersion))
 }

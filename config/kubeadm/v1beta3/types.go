@@ -221,8 +221,7 @@ type NodeRegistrationOptions struct {
 	CRISocket string `json:"criSocket,omitempty"`
 
 	// `taints` specifies the taints the Node API object should be registered with.
-	// If this field is unset, i.e. nil, in the `kubeadm init` process it will be defaulted
-	// with a control-plane taint for control-plane nodes.
+	// If this field is unset, i.e. nil, it will be defaulted with a control-plane taint for control-plane nodes.
 	// If you don't want to taint your control-plane node, set this field to an empty list,
 	// i.e. `taints: []` in the YAML file. This field is solely used for Node registration.
 	Taints []corev1.Taint `json:"taints"`
@@ -230,7 +229,7 @@ type NodeRegistrationOptions struct {
 	// `kubeletExtraArgs` passes through extra arguments to the kubelet.
 	// The arguments here are passed to the kubelet command line via the environment file
 	// kubeadm writes at runtime for the kubelet to source.
-	// This overrides the generic base-level configuration in the 'kubelet-config-1.X' ConfigMap.
+	// This overrides the generic base-level configuration in the `kubelet-config` ConfigMap.
 	// Flags have higher priority when parsing. These values are local and specific to the node
 	// kubeadm is executing on. A key in this map is the flag name as it appears on the
 	// command line except without leading dash(es).
@@ -245,7 +244,7 @@ type NodeRegistrationOptions struct {
 	// `imagePullPolicy` specifies the policy for image pulling during kubeadm "init" and
 	// "join" operations.
 	// The value of this field must be one of "Always", "IfNotPresent" or "Never".
-	// If this field is unset kubeadm will default it to "IfNotPresent", or pull the required
+	// If this field is not set, kubeadm will default it to "IfNotPresent", or pull the required
 	// images if not present on the host.
 	// +optional
 	ImagePullPolicy corev1.PullPolicy `json:"imagePullPolicy,omitempty"`
@@ -414,7 +413,7 @@ type BootstrapTokenDiscovery struct {
 	// `caCertHashes` specifies a set of public key pins to verify when token-based discovery
 	// is used. The root CA found during discovery must match one of these values.
 	// Specifying an empty set disables root CA pinning, which can be unsafe.
-	// Each hash is specified as "<type>:<value>", where the only currently supported type is
+	// Each hash is specified as `<type>:<value>`, where the only currently supported type is
 	// "sha256". This is a hex-encoded SHA-256 hash of the Subject Public Key Info (SPKI)
 	// object in DER-encoded ASN.1. These hashes can be calculated using, for example, OpenSSL.
 	// +optional
