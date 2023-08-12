@@ -263,7 +263,7 @@ limitations under the License.
 //       pathType: File
 // scheduler:
 //   extraArgs:
-//     address: "10.100.0.1"
+//     bind-address: "10.100.0.1"
 //   extraVolumes:
 //     - name: "some-volume"
 //       hostPath: "/etc/some-path"
