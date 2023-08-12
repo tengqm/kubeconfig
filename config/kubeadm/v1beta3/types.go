@@ -216,7 +216,7 @@ type NodeRegistrationOptions struct {
 	Name string `json:"name,omitempty"`
 
 	// `criSocket` is used to retrieve container runtime info.
-	// This information will be annotated to the Node API object, for later re-use
+	// This information will be annotated to the Node API object, for later re-use.
 	// +optional
 	CRISocket string `json:"criSocket,omitempty"`
 
@@ -237,7 +237,8 @@ type NodeRegistrationOptions struct {
 	KubeletExtraArgs map[string]string `json:"kubeletExtraArgs,omitempty"`
 
 	// `ignorePreflightErrors` provides a list of pre-flight errors to be ignored when
-	// the current node is registered.
+	// the current node is registered, e.g. `IsPrevilegedUser,Swap`.
+	// Value `all` ignores errors from all checks.
 	// +optional
 	IgnorePreflightErrors []string `json:"ignorePreflightErrors,omitempty"`
 

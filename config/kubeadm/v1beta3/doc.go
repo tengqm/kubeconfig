@@ -92,7 +92,7 @@ limitations under the License.
 // `--cluster-cidr` flag on controller manager and `clusterCIDR` on kube-proxy).
 //
 // Users are always allowed to override default values, with the only exception of a small subset of setting with
-// relevance for security (e.g. enforce authorization-mode Node and RBAC on api server)
+// relevance for security (e.g. enforce authorization-mode Node and RBAC on api server).
 //
 // If the user provides a configuration types that is not expected for the action you are performing, kubeadm will
 // ignore those types and print a warning.

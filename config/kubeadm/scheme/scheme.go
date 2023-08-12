@@ -19,6 +19,7 @@ package scheme
 import (
 	"github.com/tengqm/kubeconfig/config/kubeadm"
 	"github.com/tengqm/kubeconfig/config/kubeadm/v1beta3"
+	"github.com/tengqm/kubeconfig/config/kubeadm/v1beta4"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -41,5 +42,8 @@ func init() {
 func AddToScheme(scheme *runtime.Scheme) {
 	utilruntime.Must(kubeadm.AddToScheme(scheme))
 	utilruntime.Must(v1beta3.AddToScheme(scheme))
-	utilruntime.Must(scheme.SetVersionPriority(v1beta3.SchemeGroupVersion))
+	utilruntime.Must(v1beta4.AddToScheme(scheme))
+	// TODO: https://github.com/kubernetes/kubeadm/issues/2890
+	// make v1beta4 highest priority
+	utilruntime.Must(scheme.SetVersionPriority(v1beta3.SchemeGroupVersion, v1beta4.SchemeGroupVersion))
 }
