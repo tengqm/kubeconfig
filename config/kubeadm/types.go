@@ -19,13 +19,12 @@ package kubeadm
 import (
 	"crypto/x509"
 
-	"github.com/tengqm/kubeconfig/config/kubeadm/features"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	bootstraptokenv1 "github.com/tengqm/kubeconfig/config/bootstraptoken/v1"
-	"k8s.io/apimachinery/pkg/runtime/schema"
+	"github.com/tengqm/kubeconfig/config/kubeadm/features"
 )
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
