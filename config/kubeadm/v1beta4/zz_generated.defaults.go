@@ -22,7 +22,6 @@ limitations under the License.
 package v1beta4
 
 import (
-	v1 "k8s.io/api/core/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -42,37 +41,21 @@ func SetObjectDefaults_ClusterConfiguration(in *ClusterConfiguration) {
 	if in.Etcd.Local != nil {
 		for i := range in.Etcd.Local.ExtraEnvs {
 			a := &in.Etcd.Local.ExtraEnvs[i]
-			if a.ValueFrom != nil {
-				if a.ValueFrom.FieldRef != nil {
-					v1.SetDefaults_ObjectFieldSelector(a.ValueFrom.FieldRef)
-				}
-			}
+			SetDefaults_EnvVar(a)
 		}
 	}
 	SetDefaults_APIServer(&in.APIServer)
 	for i := range in.APIServer.ControlPlaneComponent.ExtraEnvs {
 		a := &in.APIServer.ControlPlaneComponent.ExtraEnvs[i]
-		if a.ValueFrom != nil {
-			if a.ValueFrom.FieldRef != nil {
-				v1.SetDefaults_ObjectFieldSelector(a.ValueFrom.FieldRef)
-			}
-		}
+		SetDefaults_EnvVar(a)
 	}
 	for i := range in.ControllerManager.ExtraEnvs {
 		a := &in.ControllerManager.ExtraEnvs[i]
-		if a.ValueFrom != nil {
-			if a.ValueFrom.FieldRef != nil {
-				v1.SetDefaults_ObjectFieldSelector(a.ValueFrom.FieldRef)
-			}
-		}
+		SetDefaults_EnvVar(a)
 	}
 	for i := range in.Scheduler.ExtraEnvs {
 		a := &in.Scheduler.ExtraEnvs[i]
-		if a.ValueFrom != nil {
-			if a.ValueFrom.FieldRef != nil {
-				v1.SetDefaults_ObjectFieldSelector(a.ValueFrom.FieldRef)
-			}
-		}
+		SetDefaults_EnvVar(a)
 	}
 }
 
