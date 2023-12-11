@@ -73,7 +73,7 @@ type InitConfiguration struct {
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// ClusterConfiguration contains cluster-wide configuration for a kubeadm cluster
+// ClusterConfiguration contains cluster-wide configuration for a kubeadm cluster.
 type ClusterConfiguration struct {
 	metav1.TypeMeta `json:",inline"`
 
@@ -205,7 +205,7 @@ type APIEndpoint struct {
 }
 
 // NodeRegistrationOptions holds fields that relate to registering a new control-plane or
-// node to the cluster, either via "kubeadm init" or "kubeadm join"
+// node to the cluster, either via `kubeadm init` or `kubeadm join`.
 type NodeRegistrationOptions struct {
 
 	// `name` is the `.metadata.name` field of the Node API object that will be created in this
@@ -252,7 +252,7 @@ type NodeRegistrationOptions struct {
 	ImagePullPolicy corev1.PullPolicy `json:"imagePullPolicy,omitempty"`
 }
 
-// Networking contains elements describing cluster's networking configuration
+// Networking contains elements describing cluster's networking configuration.
 type Networking struct {
 	// `serviceSubnet` is the subnet used by Kubernetes Services. Defaults to "10.96.0.0/12".
 	// +optional
@@ -279,7 +279,7 @@ type Etcd struct {
 	External *ExternalEtcd `json:"external,omitempty"`
 }
 
-// LocalEtcd describes that kubeadm should run an etcd cluster locally
+// LocalEtcd describes that kubeadm should run an etcd cluster locally.
 type LocalEtcd struct {
 	// ImageMeta allows to customize the container used for etcd.
 	ImageMeta `json:",inline"`
@@ -402,7 +402,7 @@ type Discovery struct {
 	Timeout *metav1.Duration `json:"timeout,omitempty"`
 }
 
-// BootstrapTokenDiscovery is used to set the options for bootstrap token based discovery
+// BootstrapTokenDiscovery is used to set the options for bootstrap token based discovery.
 type BootstrapTokenDiscovery struct {
 	// `token` is a token used to validate cluster information fetched from the
 	// control-plane.
