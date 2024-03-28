@@ -49,7 +49,7 @@ type InitConfiguration struct {
 
 	// `localAPIEndpoint` represents the endpoint of the API server instance that's deployed on this
 	// control plane node. In HA setups, this differs from `ClusterConfiguration.controlPlaneEndpoint`
-	// in the sense that `ontrolPlaneEndpoint` is the global endpoint for the cluster, which then
+	// in the sense that `controlPlaneEndpoint` is the global endpoint for the cluster, which then
 	// loadbalances the requests to each individual API server.
 	// This configuration object lets you customize what IP/DNS name and port the local API server
 	// advertises it's accessible on. By default, kubeadm tries to auto-detect the IP of the default
@@ -93,7 +93,7 @@ type ClusterConfiguration struct {
 	// +optional
 	KubernetesVersion string `json:"kubernetesVersion,omitempty"`
 
-	// `ontrolPlaneEndpoint` sets a stable IP address or DNS name for the control plane;
+	// `controlPlaneEndpoint` sets a stable IP address or DNS name for the control plane;
 	// It can be a valid IP address or a RFC-1123 DNS subdomain, both with optional TCP port.
 	// In case the `controlPlaneEndpoint` is not specified, the `advertiseAddress` + `bindPort`
 	// are used; in case the `controlPlaneEndpoint` is specified but without a TCP port,
