@@ -519,7 +519,7 @@ type ResetConfiguration struct {
 	// +optional
 	CleanupTmpDir bool `json:"cleanupTmpDir,omitempty"`
 
-	//` certificatesDir` specifies the directory where the certificates are stored.
+	// `certificatesDir` specifies the directory where the certificates are stored.
 	// If specified, it will be cleaned during the reset process.
 	// +optional
 	CertificatesDir string `json:"certificatesDir,omitempty"`
@@ -569,8 +569,208 @@ type EnvVar struct {
 type EncryptionAlgorithmType string
 
 const (
-	// EncryptionAlgorithmECDSA defines the ECDSA encryption algorithm type.
-	EncryptionAlgorithmECDSA EncryptionAlgorithmType = "ECDSA"
-	// EncryptionAlgorithmRSA defines the RSA encryption algorithm type.
-	EncryptionAlgorithmRSA EncryptionAlgorithmType = "RSA"
+	// EncryptionAlgorithmECDSAP256 defines the ECDSA encryption algorithm type with curve P256.
+	EncryptionAlgorithmECDSAP256 EncryptionAlgorithmType = "ECDSA-P256"
+	// EncryptionAlgorithmRSA2048 defines the RSA encryption algorithm type with key size 2048 bits.
+	EncryptionAlgorithmRSA2048 EncryptionAlgorithmType = "RSA-2048"
+	// EncryptionAlgorithmRSA3072 defines the RSA encryption algorithm type with key size 3072 bits.
+	EncryptionAlgorithmRSA3072 EncryptionAlgorithmType = "RSA-3072"
+	// EncryptionAlgorithmRSA4096 defines the RSA encryption algorithm type with key size 4096 bits.
+	EncryptionAlgorithmRSA4096 EncryptionAlgorithmType = "RSA-4096"
 )
+
+// Timeouts holds various timeouts that apply to kubeadm commands.
+type Timeouts struct {
+	// `controlPlaneComponentHealthCheck` is the amount of time to wait for a control plane
+	// component, such as the API server, to be healthy during `kubeadm init` and `kubeadm join`.
+	// Default: 4m
+	// +optional
+	ControlPlaneComponentHealthCheck *metav1.Duration `json:"controlPlaneComponentHealthCheck,omitempty"`
+
+	// `kubeletHealthCheck` is the amount of time to wait for the kubelet to be healthy
+	// during `kubeadm init` and `kubeadm join`.
+	// Default: 4m
+	// +optional
+	KubeletHealthCheck *metav1.Duration `json:"kubeletHealthCheck,omitempty"`
+
+	// `kubernetesAPICall` is the amount of time to wait for the kubeadm client to complete a request to
+	// the API server. This applies to all types of methods (GET, POST, etc).
+	// Default: 1m
+	// +optional
+	KubernetesAPICall *metav1.Duration `json:"kubernetesAPICall,omitempty"`
+
+	// `etcdAPICall` is the amount of time to wait for the kubeadm etcd client to complete a request to
+	// the etcd cluster.
+	// Default: 2m
+	// +optional
+	EtcdAPICall *metav1.Duration `json:"etcdAPICall,omitempty"`
+
+	// `tlsBootstrap` is the amount of time to wait for the kubelet to complete TLS bootstrap
+	// for a joining node.
+	// Default: 5m
+	// +optional
+	TLSBootstrap *metav1.Duration `json:"tlsBootstrap,omitempty"`
+
+	// `discovery` is the amount of time to wait for kubeadm to validate the API server identity
+	// for a joining node.
+	// Default: 5m
+	// +optional
+	Discovery *metav1.Duration `json:"discovery,omitempty"`
+
+	// `upgradeManifests` is the timeout for upgradring static Pod manifests
+	// Default: 5m
+	UpgradeManifests *metav1.Duration `json:"upgradeManifests,omitempty"`
+}
+
+// UpgradeApplyConfiguration contains a list of configurable options which are specific to the  "kubeadm upgrade apply" command.
+type UpgradeApplyConfiguration struct {
+	// `kubernetesVersion` is the target version of the control plane.
+	// +optional
+	KubernetesVersion string `json:"kubernetesVersion,omitempty"`
+
+	// `allowExperimentalUpgrades` instructs kubeadm to show unstable versions of Kubernetes as an upgrade
+	// alternative and allows upgrading to an alpha/beta/release candidate version of Kubernetes.
+	// Default: false
+	// +optional
+	AllowExperimentalUpgrades *bool `json:"allowExperimentalUpgrades,omitempty"`
+
+	// Enable `allowRCUpgrades` will show release candidate versions of Kubernetes as an upgrade alternative and
+	// allows upgrading to a release candidate version of Kubernetes.
+	// +optional
+	AllowRCUpgrades *bool `json:"allowRCUpgrades,omitempty"`
+
+	// `certificateRenewal` instructs kubeadm to execute certificate renewal during upgrades.
+	// Defaults to true.
+	// +optional
+	CertificateRenewal *bool `json:"certificateRenewal,omitempty"`
+
+	// `dryRun` tells if the dry run mode is enabled, don't apply any change if it is and just output
+	// what would be done.
+	// +optional
+	DryRun *bool `json:"dryRun,omitempty"`
+
+	// `etcdUpgrade` instructs kubeadm to execute etcd upgrade during upgrades.
+	// Defaults to true.
+	// +optional
+	EtcdUpgrade *bool `json:"etcdUpgrade,omitempty"`
+
+	// `forceUpgrade` flag instructs kubeadm to upgrade the cluster without prompting for confirmation.
+	// +optional
+	ForceUpgrade *bool `json:"forceUpgrade,omitempty"`
+
+	// `ignorePreflightErrors` provides a slice of pre-flight errors to be ignored during the upgrade process,
+	// e.g. 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.
+	// +optional
+	IgnorePreflightErrors []string `json:"ignorePreflightErrors,omitempty"`
+
+	// `patches` contains options related to applying patches to components deployed by kubeadm during "kubeadm upgrade".
+	// +optional
+	Patches *Patches `json:"patches,omitempty"`
+
+	// `printConfig` specifies whether the configuration file that will be used in the upgrade should be printed or not.
+	// +optional
+	PrintConfig *bool `json:"printConfig,omitempty"`
+
+	// `skipPhases` is a list of phases to skip during command execution.
+	// NOTE: This field is currently ignored for "kubeadm upgrade apply", but in the future it will be supported.
+	SkipPhases []string
+}
+
+// UpgradeDiffConfiguration contains a list of configurable options which are specific to the "kubeadm upgrade diff" command.
+type UpgradeDiffConfiguration struct {
+	// `kubernetesVersion` is the target version of the control plane.
+	// +optional
+	KubernetesVersion string `json:"kubernetesVersion,omitempty"`
+
+	// `diffContextLines` is the number of lines of context in the diff.
+	// +optional
+	DiffContextLines int `json:"contextLines,omitempty"`
+}
+
+// UpgradeNodeConfiguration contains a list of configurable options which are specific to the "kubeadm upgrade node" command.
+type UpgradeNodeConfiguration struct {
+	// `certificateRenewal` instructs kubeadm to execute certificate renewal during upgrades.
+	// Defaults to true.
+	// +optional
+	CertificateRenewal *bool `json:"certificateRenewal,omitempty"`
+
+	// `dryRun` tells if the dry run mode is enabled, don't apply any change if it is and just output what would be done.
+	// +optional
+	DryRun *bool `json:"dryRun,omitempty"`
+
+	// `etcdUpgrade` instructs kubeadm to execute etcd upgrade during upgrades.
+	// Defaults to true.
+	// +optional
+	EtcdUpgrade *bool `json:"etcdUpgrade,omitempty"`
+
+	// `ignorePreflightErrors` provides a slice of pre-flight errors to be ignored during the upgrade process,
+	// e.g. 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.
+	// +optional
+	IgnorePreflightErrors []string `json:"ignorePreflightErrors,omitempty"`
+
+	// `skipPhases` is a list of phases to skip during command execution.
+	// The list of phases can be obtained with the `kubeadm upgrade node phase --help` command.
+	// +optional
+	SkipPhases []string `json:"skipPhases,omitempty"`
+
+	// `patches` contains options related to applying patches to components deployed by kubeadm during `kubeadm upgrade`.
+	// +optional
+	Patches *Patches `json:"patches,omitempty"`
+}
+
+// UpgradePlanConfiguration contains a list of configurable options which are specific to the "kubeadm upgrade plan" command.
+type UpgradePlanConfiguration struct {
+	// `kubernetesVersion` is the target version of the control plane.
+	KubernetesVersion string `json:"kubernetesVersion,omitempty"`
+
+	// `allowExperimentalUpgrades` instructs kubeadm to show unstable versions of Kubernetes as an upgrade
+	// alternative and allows upgrading to an alpha/beta/release candidate version of Kubernetes.
+	// Default: false
+	// +optional
+	AllowExperimentalUpgrades *bool `json:"allowExperimentalUpgrades,omitempty"`
+
+	// Enable `allowRCUpgrades` will show release candidate versions of Kubernetes as an upgrade alternative and
+	// allows upgrading to a release candidate version of Kubernetes.
+	// +optional
+	AllowRCUpgrades *bool `json:"allowRCUpgrades,omitempty"`
+
+	// `dryRun` tells if the dry run mode is enabled, don't apply any change if it is and just output what would be done.
+	// +optional
+	DryRun *bool `json:"dryRun,omitempty"`
+
+	// `ignorePreflightErrors` provides a slice of pre-flight errors to be ignored during the upgrade process,
+	// e.g. 'IsPrivilegedUser,Swap'. Value 'all' ignores errors from all checks.
+	// +optional
+	IgnorePreflightErrors []string `json:"ignorePreflightErrors,omitempty"`
+
+	// `printConfig` specifies whether the configuration file that will be used in the upgrade should be printed or not.
+	// +optional
+	PrintConfig *bool `json:"printConfig,omitempty"`
+}
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
+// UpgradeConfiguration contains a list of options that are specific to `kubeadm upgrade` subcommands.
+type UpgradeConfiguration struct {
+	metav1.TypeMeta `json:",inline"`
+
+	// `apply` holds a list of options that are specific to the `kubeadm upgrade apply` command.
+	// +optional
+	Apply UpgradeApplyConfiguration `json:"apply,omitempty"`
+
+	// `diff` holds a list of options that are specific to the `kubeadm upgrade diff` command.
+	// +optional
+	Diff UpgradeDiffConfiguration `json:"diff,omitempty"`
+
+	// `node` holds a list of options that are specific to the `kubeadm upgrade node` command.
+	// +optional
+	Node UpgradeNodeConfiguration `json:"node,omitempty"`
+
+	// `plan` holds a list of options that are specific to the `kubeadm upgrade plan` command.
+	// +optional
+	Plan UpgradePlanConfiguration `json:"plan,omitempty"`
+
+	// `timeouts` holds various timeouts that apply to kubeadm commands.
+	// +optional
+	Timeouts *Timeouts `json:"timeouts,omitempty"`
+}
