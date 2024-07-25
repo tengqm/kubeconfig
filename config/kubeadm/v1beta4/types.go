@@ -73,6 +73,10 @@ type InitConfiguration struct {
 	// `kubeadm init`.
 	// +optional
 	Patches *Patches `json:"patches,omitempty"`
+
+	// `timeouts` holds various timeouts that apply to kubeadm commands.
+	// +optional
+	Timeouts *Timeouts `json:"timeouts,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
@@ -182,10 +186,6 @@ type APIServer struct {
 	// certificate.
 	// +optional
 	CertSANs []string `json:"certSANs,omitempty"`
-
-	// `timeoutForControlPlane` controls the timeout that we use for API server to appear.
-	// +optional
-	TimeoutForControlPlane *metav1.Duration `json:"timeoutForControlPlane,omitempty"`
 }
 
 // DNS defines the DNS addon that should be used in the cluster
@@ -279,6 +279,11 @@ type NodeRegistrationOptions struct {
 	// images if not present on the host.
 	// +optional
 	ImagePullPolicy corev1.PullPolicy `json:"imagePullPolicy,omitempty"`
+
+	// `imagePullSerial` specifies if image pulling performed by kubeadm must be done serially or in parallel.
+	// Default: true
+	// +optional
+	ImagePullSerial *bool `json:"imagePullSerial,omitempty"`
 }
 
 // Networking contains elements describing cluster's networking configuration.
@@ -400,6 +405,10 @@ type JoinConfiguration struct {
 	// by kubeadm during `kubeadm join`.
 	// +optional
 	Patches *Patches `json:"patches,omitempty"`
+
+	// `timeouts` holds various timeouts that apply to kubeadm commands.
+	// +optional
+	Timeouts *Timeouts `json:"timeouts,omitempty"`
 }
 
 // JoinControlPlane contains elements describing an additional control plane instance to be deployed on the joining node.
@@ -435,10 +444,6 @@ type Discovery struct {
 	// does not contain any other authentication information.
 	// +optional
 	TLSBootstrapToken string `json:"tlsBootstrapToken,omitempty" datapolicy:"token"`
-
-	// `timeout` modifies the discovery timeout.
-	// +optional
-	Timeout *metav1.Duration `json:"timeout,omitempty"`
 }
 
 // BootstrapTokenDiscovery is used to set the options for bootstrap token based discovery.
@@ -550,6 +555,16 @@ type ResetConfiguration struct {
 	// The list of phases can be obtained with the `kubeadm reset phase --help` command.
 	// +optional
 	SkipPhases []string `json:"skipPhases,omitempty"`
+
+	// `unmountFlags` is a list of `unmount2()` syscall flags that kubeadm can use when unmounting
+	// directories during "reset". This flag can be one of: `"MNT_FORCE"`, `"MNT_DETACH"`,
+	// `"MNT_EXPIRE"`, `"UMOUNT_NOFOLLOW"`.  By default this list is empty.
+	// +optional
+	UnmountFlags []string `json:"unmountFlags,omitempty"`
+
+	// Timeouts holds various timeouts that apply to kubeadm commands.
+	// +optional
+	Timeouts *Timeouts `json:"timeouts,omitempty"`
 }
 
 // Arg represents an argument with a name and a value.

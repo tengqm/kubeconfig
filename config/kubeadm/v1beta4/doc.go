@@ -26,39 +26,40 @@ limitations under the License.
 //
 // A list of changes since v1beta3:
 //
-//   - TODO https://github.com/kubernetes/kubeadm/issues/2890
-//   - Support custom environment variables in control plane components under `ClusterConfiguration`.
-//     Use `APIServer.ExtraEnvs`, `ControllerManager.ExtraEnvs`, `Scheduler.ExtraEnvs`,
-//     `Etcd.Local.ExtraEnvs`.
-//   - The `ResetConfiguration` API type is now supported in v1beta4.
-//     Users are able to reset a node by passing a `--config` file to `kubeadm reset`.
-//   - `dry-run` mode is now configureable in InitConfiguration and JoinConfiguration config files.
-//   - Replace the existing string/string extra argument maps with structured extra arguments
-//     that support duplicates. The change applies to `ClusterConfiguration` - `APIServer.ExtraArgs`,
-//     `ControllerManager.ExtraArgs`, `Scheduler.ExtraArgs`. Also to `NodeRegistrationOptions.KubeletExtraArgs`.
-//   - Add `ClusterConfiguration.EncryptionAlgorithm` that can be used to set the asymmetric
-//     encryption algorithm used for this cluster's keys and certificates. Can be one of
-//     `"RSA-2048"` (default), `"RSA-3072"`, `"RSA-4096"` or `"ECDSA-P256"`.
-//   - Add `ClusterConfiguration.DNS.Disabled` and `ClusterConfiguration.Proxy.Disabled`
-//     that can be used to disable the CoreDNS and kube-proxy addons during cluster
-//     initialization. Skipping the related addons phases, during cluster creation will
-//     set the same fields to `false`.
-//   - Add the `NodeRegistration.ImagePullSerial` field in 'InitConfiguration` and `JoinConfiguration`, which
-//     can be used to control if kubeadm pulls images serially or in parallel.
-//   - The UpgradeConfiguration kubeadm API is now supported in v1beta4 when passing
-//     `--config` to `kubeadm upgrade` subcommands. Usage of component configuration for `kubelet` and `kube-proxy`,
-//     InitConfiguration and ClusterConfiguration is deprecated and will be ignored when passing `--config` to
-//     `upgrade` subcommands.
-//   - Add a `Timeouts` structure to `InitConfiguration`, `JoinConfiguration`, `ResetConfiguration` and `UpgradeConfiguration`
-//     that can be used to configure various timeouts.
+// - TODO https://github.com/kubernetes/kubeadm/issues/2890
+// - Support custom environment variables in control plane components under `ClusterConfiguration`.
+//   Use `apiServer.extraEnvs`, `controllerManager.extraEnvs`, `scheduler.extraEnvs`,
+//   `etcd.local.extraEnvs`.
+// - The `ResetConfiguration` API type is now supported in v1beta4.
+//   Users are able to reset a node by passing a `--config` file to `kubeadm reset`.
+// - The dry-run mode is now configureable in InitConfiguration and JoinConfiguration config files.
+// - Replace the existing string/string extra argument maps with structured extra arguments
+//   that support duplicates. The change applies to `ClusterConfiguration` -
+`apiServer.extraArgs`,
+//   `controllerManager.extraArgs`, `scheduler.extraArgs`. Also to `nodeRegistration.kubeletExtraArgs`.
+// - Add `ClusterConfiguration.encryptionAlgorithm` that can be used to set the asymmetric
+//   encryption algorithm used for this cluster's keys and certificates. Can be one of
+//   `"RSA-2048"` (default), `"RSA-3072"`, `"RSA-4096"` or `"ECDSA-P256"`.
+// - Add `ClusterConfiguration.dns.disabled` and `ClusterConfiguration.proxy.disabled`
+//   that can be used to disable the CoreDNS and kube-proxy addons during cluster
+//   initialization. Skipping the related addons phases, during cluster creation will
+//   set the same fields to `false`.
+// - Add the `nodeRegistration.imagePullSerial` field in `InitConfiguration` and `JoinConfiguration`, which
+//   can be used to control if kubeadm pulls images serially or in parallel.
+// - The `UpgradeConfiguration` kubeadm API is now supported in v1beta4 when passing
+//   `--config` to `kubeadm upgrade` subcommands. Usage of component configuration for `kubelet` and `kube-proxy`,
+//   `InitConfiguration` and `ClusterConfiguration` is deprecated and will be ignored when passing `--config` to
+//   `upgrade` subcommands.
+// - Add a `Timeouts` structure to `InitConfiguration`, `JoinConfiguration`, `ResetConfiguration` and `UpgradeConfiguration`
+//   that can be used to configure various timeouts.
 //
 // # Migration from old kubeadm config versions
 //
-//   - kubeadm v1.15.x and newer can be used to migrate from v1beta1 to v1beta2.
-//   - kubeadm v1.22.x and newer no longer support v1beta1 and older APIs, but can be used to migrate v1beta2 to v1beta3.
-//   - kubeadm v1.27.x and newer no longer support v1beta2 and older APIs.
-//   - TODO: https://github.com/kubernetes/kubeadm/issues/2890
-//     add version that can be used to convert to v1beta4
+// - kubeadm v1.15.x and newer can be used to migrate from v1beta1 to v1beta2.
+// - kubeadm v1.22.x and newer no longer support v1beta1 and older APIs, but can be used to migrate v1beta2 to v1beta3.
+// - kubeadm v1.27.x and newer no longer support v1beta2 and older APIs.
+// - TODO: https://github.com/kubernetes/kubeadm/issues/2890
+//   add version that can be used to convert to v1beta4
 //
 // ## Basics
 //
@@ -118,11 +119,8 @@ limitations under the License.
 // apiVersion: kubeadm.k8s.io/v1beta4
 // kind: InitConfiguration
 // bootstrapTokens:
-//
 //	...
-//
 // nodeRegistration:
-//
 //	...
 //
 // ```
@@ -130,52 +128,44 @@ limitations under the License.
 // are the configuration of the bootstrap token and all the setting which are specific to the node where kubeadm
 // is executed, including:
 //
-//   - NodeRegistration, that holds fields that relate to registering the new node to the cluster;
-//     use it to customize the node name, the CRI socket to use or any other settings that should apply to this
-//     node only (e.g. the node ip).
+// - NodeRegistration, that holds fields that relate to registering the new node to the cluster;
+//   use it to customize the node name, the CRI socket to use or any other settings that should apply to this
+//   node only (e.g. the node ip).
 //
-//   - LocalAPIEndpoint, that represents the endpoint of the instance of the API server to be deployed on this node;
-//     use it e.g. to customize the API server advertise address.
+// - LocalAPIEndpoint, that represents the endpoint of the instance of the API server to be deployed on this node;
+//   use it e.g. to customize the API server advertise address.
 //
 // ```yaml
 // apiVersion: kubeadm.k8s.io/v1beta4
 // kind: ClusterConfiguration
 // networking:
-//
 //	...
-//
 // etcd:
-//
 //	...
-//
 // apiServer:
-//
 //	extraArgs:
 //	  ...
 //	extraVolumes:
 //	  ...
-//
 // ...
 // ```
 //
 // The ClusterConfiguration type should be used to configure cluster-wide settings,
 // including settings for:
 //
-//   - `networking` that holds configuration for the networking topology of the cluster; use it e.g. to customize
-//     Pod subnet or services subnet.
+// - `networking` that holds configuration for the networking topology of the cluster; use it e.g. to customize
+//   Pod subnet or services subnet.
 //
-//   - `etcd`: use it e.g. to customize the local etcd or to configure the API server
-//     for using an external etcd cluster.
+// - `etcd`: use it e.g. to customize the local etcd or to configure the API server
+//   for using an external etcd cluster.
 //
-//   - kube-apiserver, kube-scheduler, kube-controller-manager configurations; use it to customize control-plane
-//     components by adding customized setting or overriding kubeadm default settings.
+// - kube-apiserver, kube-scheduler, kube-controller-manager configurations; use it to customize control-plane
+//   components by adding customized setting or overriding kubeadm default settings.
 //
 // ```yaml
 // apiVersion: kubeproxy.config.k8s.io/v1alpha1
 // kind: KubeProxyConfiguration
-//
 //	...
-//
 // ```
 //
 // The KubeProxyConfiguration type should be used to change the configuration passed to kube-proxy instances deployed
@@ -188,7 +178,6 @@ limitations under the License.
 // ```yaml
 // apiVersion: kubelet.config.k8s.io/v1beta1
 // kind: KubeletConfiguration
-//
 //	...
 //
 // ```
@@ -339,11 +328,12 @@ limitations under the License.
 // are the discovery method used for accessing the cluster info and all the setting which are specific
 // to the node where kubeadm is executed, including:
 //
-//   - `nodeRegistration`, that holds fields that relate to registering the new node to the cluster;
-//     use it to customize the node name, the CRI socket to use or any other settings that should apply to this
-//     node only (e.g. the node ip).
+// - `nodeRegistration`, that holds fields that relate to registering the new node to the cluster;
+//   use it to customize the node name, the CRI socket to use or any other settings that should apply to this
+//   node only (e.g. the node ip).
 //
 // - `apiEndpoint“, that represents the endpoint of the instance of the API server to be eventually deployed on this node.
+
 package v1beta4
 
 //TODO: The BootstrapTokenString object should move out to either k8s.io/client-go or k8s.io/api in the future

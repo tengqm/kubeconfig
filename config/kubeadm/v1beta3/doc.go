@@ -28,17 +28,17 @@ limitations under the License.
 //
 // - The deprecated "ClusterConfiguration.useHyperKubeImage" field has been removed.
 //   Kubeadm no longer supports the hyperkube image.
-// - The "ClusterConfiguration.DNS.Type" field has been removed since CoreDNS is the only supported
+// - The "ClusterConfiguration.dns.type" field has been removed since CoreDNS is the only supported
 //   DNS server type by kubeadm.
 // - Include "datapolicy" tags on the fields that hold secrets.
 //   This would result in the field values to be omitted when API structures are printed with klog.
-// - Add "InitConfiguration.SkipPhases", "JoinConfiguration.SkipPhases" to allow skipping
+// - Add "InitConfiguration.skipPhases", "JoinConfiguration.skipPhases" to allow skipping
 //   a list of phases during kubeadm init/join command execution.
-// - Add "InitConfiguration.NodeRegistration.ImagePullPolicy" and "JoinConfiguration.NodeRegistration.ImagePullPolicy"
+// - Add "InitConfiguration.nodeRegistration.imagePullPolicy" and "JoinConfiguration.nodeRegistration.imagePullPolicy"
 //   to allow specifying the images pull policy during kubeadm "init" and "join".
 //   The value must be one of "Always", "Never" or "IfNotPresent".
 //   "IfNotPresent" is the default, which has been the existing behavior prior to this addition.
-// - Add "InitConfiguration.Patches.Directory", "JoinConfiguration.Patches.Directory" to allow
+// - Add "InitConfiguration.patches.directory", "JoinConfiguration.patches.directory" to allow
 //   the user to configure a directory from which to take patches for components deployed by kubeadm.
 // - Move the BootstrapToken* API and related utilities out of the "kubeadm" API group to a new group
 //   "bootstraptoken". The kubeadm API version v1beta3 no longer contains the BootstrapToken* structures.
