@@ -151,14 +151,14 @@ limitations under the License.
 // apiVersion: kubeadm.k8s.io/v1beta4
 // kind: ClusterConfiguration
 // networking:
-//	 ...
+//   ...
 // etcd:
-//	 ...
+//   ...
 // apiServer:
-//	 extraArgs:
-//	   ...
-//	 extraVolumes:
-//	   ...
+//   extraArgs:
+//     ...
+//   extraVolumes:
+//     ...
 // ...
 // ```
 //
@@ -219,29 +219,29 @@ limitations under the License.
 //   - system:bootstrappers:kubeadm:default-node-token
 //
 // nodeRegistration:
-//	 name: "ec2-10-100-0-1"
-//	 criSocket: "unix:///var/run/containerd/containerd.sock"
-//	 taints:
-//	   - key: "kubeadmNode"
-//	     value: "someValue"
-//	     effect: "NoSchedule"
-//	 kubeletExtraArgs:
-//	   - name: v
-//	     value: "5"
-//	 ignorePreflightErrors:
-//	   - IsPrivilegedUser
-//	 imagePullPolicy: "IfNotPresent"
-//	 imagePullSerial: true
+//   name: "ec2-10-100-0-1"
+//   criSocket: "unix:///var/run/containerd/containerd.sock"
+//   taints:
+//     - key: "kubeadmNode"
+//       value: "someValue"
+//       effect: "NoSchedule"
+//   kubeletExtraArgs:
+//     - name: v
+//       value: "5"
+//   ignorePreflightErrors:
+//     - IsPrivilegedUser
+//   imagePullPolicy: "IfNotPresent"
+//   imagePullSerial: true
 //
 // localAPIEndpoint:
-//	 advertiseAddress: "10.100.0.1"
-//	 bindPort: 6443
+//   advertiseAddress: "10.100.0.1"
+//   bindPort: 6443
 // certificateKey: "e6a2eb8581237ab72a4f494f30285ec12a9694d750b9785706a83bfcbbbd2204"
 // skipPhases:
 //   - preflight
 // timeouts:
-//	 controlPlaneComponentHealthCheck: "60s"
-//	 kubenetesAPICall: "40s"
+//   controlPlaneComponentHealthCheck: "60s"
+//   kubenetesAPICall: "40s"
 // ---
 // apiVersion: kubeadm.k8s.io/v1beta4
 // kind: ClusterConfiguration
@@ -377,13 +377,13 @@ limitations under the License.
 // apiVersion: kubeadm.k8s.io/v1beta4
 // kind: UpgradeConfiguration
 // apply:
-//	 ...
+//   ...
 // diff:
-//	 ...
+//   ...
 // node:
-//	 ...
+//   ...
 // plan:
-//	 ...
+//   ...
 // ```
 //
 // The `UpgradeConfiguration` structure includes a few substructures that only apply to different subcommands of
