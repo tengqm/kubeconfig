@@ -152,8 +152,7 @@ type ClusterConfiguration struct {
 	ClusterName string `json:"clusterName,omitempty"`
 
 	// `encryptionAlgorithm` holds the type of asymmetric encryption algorithm used for keys and
-	// certificates. Can be `"RSA"` (default algorithm, key size is 2048) or `"ECDSA"` (uses the
-	// P-256 elliptic curve).
+	// certificates. Can be one of `"RSA-2048"` (default), `"RSA-3072"`, `"RSA-4096"` or `"ECDSA-P256"`.
 	// +optional
 	EncryptionAlgorithm EncryptionAlgorithmType `json:"encryptionAlgorithm,omitempty"`
 
