@@ -322,7 +322,7 @@ limitations under the License.
 // dns:
 //   disabled: true  # disable CoreDNS
 // proxy:
-//   diabled: true   # disable kube-proxy
+//   disabled: true   # disable kube-proxy
 //
 // ---
 // apiVersion: kubelet.config.k8s.io/v1beta1
