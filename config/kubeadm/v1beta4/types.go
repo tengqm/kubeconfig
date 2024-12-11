@@ -390,7 +390,7 @@ type JoinConfiguration struct {
 	// +optional
 	NodeRegistration NodeRegistrationOptions `json:"nodeRegistration,omitempty"`
 
-	// `caCertPath` is the path to the SSL certificate authority used to secure comunications
+	// `caCertPath` is the path to the SSL certificate authority used to secure communications
 	// between node and control-plane.
 	// Defaults to "/etc/kubernetes/pki/ca.crt".
 	// +optional
