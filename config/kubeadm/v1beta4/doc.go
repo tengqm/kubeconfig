@@ -76,7 +76,7 @@ limitations under the License.
 //
 // kubeadm supports the following configuration types:
 //
-// ```
+// ```yaml
 // apiVersion: kubeadm.k8s.io/v1beta4
 // kind: InitConfiguration
 //
