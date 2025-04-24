@@ -26,6 +26,13 @@ limitations under the License.
 //
 // A list of changes since v1beta3:
 //
+// v1.33:
+//
+// - Add an `EtcdUpgrade` field to `UpgradeConfiguration.plan` that can be used to
+//   control whether the etcd upgrade plan should be displayed.
+//
+// v1.31:
+//
 // - Support custom environment variables in control plane components under `ClusterConfiguration`.
 //   Use `apiServer.extraEnvs`, `controllerManager.extraEnvs`, `scheduler.extraEnvs`,
 //   `etcd.local.extraEnvs`.
@@ -67,7 +74,7 @@ limitations under the License.
 //
 // ## Basics
 //
-// The preferred way to configure kubeadm is to pass an YAML configuration file with
+// The preferred way to configure kubeadm is to pass a YAML configuration file with
 // the `--config` option. Some of the configuration options defined in the kubeadm
 // config file are also available as command line flags, but only the most
 // common/simple use case are supported with this approach.

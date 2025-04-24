@@ -484,6 +484,9 @@ type ResetConfiguration struct {
 	// DryRun tells if the dry run mode is enabled, don't apply any change if it is and just output what would be done.
 	DryRun bool
 
+	// EtcdUpgrade instructs kubeadm to execute etcd upgrade during upgrades.
+	EtcdUpgrade *bool
+
 	// Force flag instructs kubeadm to reset the node without prompting for confirmation.
 	Force bool
 
