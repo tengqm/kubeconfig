@@ -22,7 +22,7 @@ import (
 
 	netutils "k8s.io/utils/net"
 
-	"github.com/pkg/errors"
+	"github.com/tengqm/kubeconfig/config/kubeadm/util/errors"
 )
 
 // APIEndpointFromString returns an APIEndpoint struct based on a "host:port" raw string.
