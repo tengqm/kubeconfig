@@ -303,7 +303,6 @@ limitations under the License.
 //
 // - `apiEndpoint`, that represents the endpoint of the instance of the API server to be eventually deployed on this node.
 //
+// DEPRECATED: v1beta3 is deprecated in favor of v1beta4 and will be removed in a future release,
+// 1.34 or later. Please migrate
 package v1beta3
-
-//TODO: The BootstrapTokenString object should move out to either k8s.io/client-go or k8s.io/api in the future
-//(probably as part of Bootstrap Tokens going GA). It should not be staged under the kubeadm API as it is now.
